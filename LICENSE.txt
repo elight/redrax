@@ -1,4 +1,4 @@
-Copyright (c) 2014 Evan Light
+Copyright (c) 2014 Rackspace
 
 MIT License
 
