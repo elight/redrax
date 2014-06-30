@@ -22,18 +22,11 @@ module Redrax
     end
 
     def authenticator 
-      @authenticator ||= discover_authenticator.new(
+      @authenticator ||= Discovery.new(
+        :authenticator,
         :config => config, 
         :transport => transport
-      )
-    end
-
-    private
-
-    def discover_authenticator
-      version = config.fetch(:version, "v2")
-      name = "Authenticator" + version.to_s.capitalize
-      Redrax.const_get(name)
+      ).call
     end
   end
 end

@@ -3,6 +3,7 @@ require 'redrax/client'
 require 'redrax/configuration'
 require 'redrax/errors'
 
+require 'redrax/discovery'
 require 'redrax/authenticator_v2'
 
 module Redrax
