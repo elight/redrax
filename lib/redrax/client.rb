@@ -12,32 +12,28 @@ module Redrax
     end
 
     def authenticate!
-      body = {
-        'auth' => {
-          'RAX-KSKEY:apiKeyCredentials' => {
-            'username' => @config[:user],
-            'apiKey'   => @config[:api_key]
-          }
-        }
-      }
-      resp = transport.post do |r|
-        r.url     '/v2.0/tokens'
-        r.headers['Content-Type'] = 'application/json'
-        r.body = body.to_json
-      end
-
-      exception = 
-        case resp.status
-        when 401
-          UnauthorizedException
-        end
-      raise exception if exception
+      authenticator.call
     end
 
     US_SERVER = 'https://identity.api.rackspacecloud.com'
 
     def transport
       @transport ||= Faraday.new(:url => US_SERVER)
+    end
+
+    def authenticator 
+      @authenticator ||= discover_authenticator.new(
+        :config => config, 
+        :transport => transport
+      )
+    end
+
+    private
+
+    def discover_authenticator
+      version = config.fetch(:version, "v2")
+      name = "Authenticator" + version.to_s.capitalize
+      Redrax.const_get(name)
     end
   end
 end
