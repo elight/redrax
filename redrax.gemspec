@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "redrax"
   spec.version       = Redrax::VERSION
   spec.authors       = ["Evan Light"]
-  spec.email         = ["evan@tripledogdare.net"]
+  spec.email         = ["evan.light@rackspace.com"]
   spec.summary       = %q{TODO: Write a short summary. Required.}
   spec.description   = %q{TODO: Write a longer description. Optional.}
   spec.homepage      = ""
