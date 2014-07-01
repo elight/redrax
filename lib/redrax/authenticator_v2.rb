@@ -1,4 +1,8 @@
 module Redrax
+  # An authenticator is responsible for using the supplied Transport and config
+  # to submit a user's credentials to a particular version of the Rackspace 
+  # cloud's authentication resource.  It returns an AuthToken and a 
+  # ServiceCatalog.
   class AuthenticatorV2
     attr_reader :transport, :config
 
@@ -29,6 +33,10 @@ module Redrax
           UnauthorizedException
         end
       raise exception if exception
+
+      auth_response_json = JSON.parse(resp.body)
+      
+      [AuthToken.new(auth_response_json), ServiceCatalog.new(auth_response_json)]
     end
   end
 end

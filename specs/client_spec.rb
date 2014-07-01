@@ -29,7 +29,7 @@ describe Redrax::Client do
     end
   end
 
-  describe "authenticate!", :vcr do
+  describe "#authenticate!", :vcr do
     it "raises an error when failing to authenticate" do
       client.configure!(config)
 
@@ -38,12 +38,25 @@ describe Redrax::Client do
       end
     end
 
-    it "returns itself when successful" do
-      client.configure!(
-        user:    ENV['RAX_USERNAME'],
-        api_key: ENV['RAX_API_KEY']
-      )
-      assert_equal client.authenticate!, client
+    describe "successfully" do
+      let(:authd_client) {
+        client.configure!(
+          user:    ENV['RAX_USERNAME'],
+          api_key: ENV['RAX_API_KEY']
+        ).authenticate!
+      }
+      
+      it "returns itself when successful" do
+        assert_equal authd_client, client
+      end
+
+      it "has an AuthToken after successful authentication" do
+        assert_instance_of Redrax::AuthToken, authd_client.auth_token
+      end
+
+      it "has a ServiceCatalog after successful authentication" do
+        assert_instance_of Redrax::ServiceCatalog, authd_client.service_catalog
+      end
     end
   end
 end
