@@ -29,11 +29,21 @@ describe Redrax::Client do
     end
   end
 
-  describe "authenticate!" do
+  describe "authenticate!", :vcr do
     it "raises an error when failing to authenticate" do
+      client.configure!(config)
+
       assert_raises(Redrax::UnauthorizedException) do
-        client.configure!(config).authenticate!
+        client.authenticate!
       end
+    end
+
+    it "returns itself when successful" do
+      client.configure!(
+        user:    ENV['RAX_USERNAME'],
+        api_key: ENV['RAX_API_KEY']
+      )
+      assert_equal client.authenticate!, client
     end
   end
 end

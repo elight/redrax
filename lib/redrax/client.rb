@@ -13,6 +13,7 @@ module Redrax
 
     def authenticate!
       authenticator.call
+      self
     end
 
     US_SERVER = 'https://identity.api.rackspacecloud.com'
