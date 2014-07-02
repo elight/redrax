@@ -39,18 +39,22 @@ describe Redrax::CloudFiles do
         c.configure!(params).authenticate!
       }
     }
-
     let (:params) {
       {
         user: ENV['RAX_USERNAME'],
-        api_key: ENV['RAX_API_KEY']
+        api_key: ENV['RAX_API_KEY'],
+        region: :iad
       }
     }
 
-    it "retrieves the user's list of containers" do
-      resp = cf.list_containers(:region => :dfw)
-      require 'pry'
-      binding.pry
+    it "get the user's list of containers, supplying a region for the req" do
+      assert cf.list_containers(:region => :dfw).length > 0
+    end
+
+    it "gets the user's list of containers, using the configured region" do
+      r1 = cf.list_containers(:region => :dfw)
+      r2 = cf.list_containers
+      refute_equal r1.length, r2.length
     end
   end
 end

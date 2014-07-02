@@ -22,7 +22,7 @@ module Redrax
     end
     
     def list_containers(options = {})
-      client.request('', :get, {}, {}, options)
+      client.request('', :get, [200, 203], {}, {}, options)
     end
   end
 end
