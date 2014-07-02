@@ -5,6 +5,7 @@ require 'redrax/errors'
 
 require 'redrax/discovery'
 require 'redrax/authenticator_v2'
+require 'redrax/auth_transport'
 require 'redrax/transport'
 require 'redrax/auth_token'
 require 'redrax/service_catalog'

@@ -1,35 +1,56 @@
 require_relative 'spec_helper'
 
 describe Redrax::CloudFiles do
-  let(:client) { Minitest::Mock.new }
-  let(:cf)     { Redrax::CloudFiles.new(client) }
+  describe "dependencies" do
+    let(:mock_client) { Minitest::Mock.new }
+    let(:cf)          { Redrax::CloudFiles.new(mock_client) }
 
-  let (:params) {
-    {
-      user: "foo",
-      api_key: "bar"
+    let (:params) {
+      {
+        user: "foo",
+        api_key: "bar"
+      }
     }
-  }
-  
-  describe "#configure!" do
-    it "delegates configuration to its Client" do
-      client.expect(:configure!, client, [params])
+    
+    describe "#configure!" do
+      it "delegates configuration to its Client" do
+        mock_client.expect(:configure!, mock_client, [params])
 
-      cf.configure!(params)
+        cf.configure!(params)
 
-      client.verify
+        mock_client.verify
+      end
+    end
+
+    describe "#authenticate!" do
+      it "delegates authentication to its Client" do
+        mock_client.expect(:authenticate!, mock_client)
+        
+        cf.authenticate!
+
+        mock_client.verify
+      end
     end
   end
 
-  describe "#authenticate!" do
-    it "delegates authentication to its Client" do
-      client.expect(:authenticate!, client)
-      
-      cf.authenticate!
+  describe "#list_containers", :vcr do
+    let(:cf)      { 
+      Redrax::CloudFiles.new.tap { |c|
+        c.configure!(params).authenticate!
+      }
+    }
 
-      client.verify
+    let (:params) {
+      {
+        user: ENV['RAX_USERNAME'],
+        api_key: ENV['RAX_API_KEY']
+      }
+    }
+
+    it "retrieves the user's list of containers" do
+      resp = cf.list_containers(:region => :dfw)
+      require 'pry'
+      binding.pry
     end
   end
-
-  
 end

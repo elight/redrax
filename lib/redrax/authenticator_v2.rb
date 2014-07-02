@@ -11,6 +11,10 @@ module Redrax
       @config    = params[:config]
     end
 
+    def api_docs(method = nil)
+      "http://docs.rackspace.com/auth/api/v2.0/auth-client-devguide/content/POST_authenticate_v2.0_tokens_Token_Calls.html"
+    end
+
     def call
       body = {
         'auth' => {

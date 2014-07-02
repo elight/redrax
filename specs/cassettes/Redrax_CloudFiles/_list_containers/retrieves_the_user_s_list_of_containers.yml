@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 02 Jul 2014 20:13:02 GMT
+      - Wed, 02 Jul 2014 20:12:47 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -31,7 +31,7 @@ http_interactions:
       Connection:
       - keep-alive
       X-Newrelic-App-Data:
-      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcA1IPUwhSH1NVBBtDBVMJAwgAAwcCBABVBQhQBUA7
+      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcA10JVQdQH1NVBBtDUQBcUFYCU1cECQ8HAQcEVUA7
       Vary:
       - Accept, Accept-Encoding, X-Auth-Token
       Front-End-Https:
@@ -44,5 +44,55 @@ http_interactions:
         Role that allows a user access to keystone Service methods","name":"compute:default"},{"id":"10000150","description":"Checkmate
         Access role","name":"checkmate"}],"name":"<USERNAME>","RAX-AUTH:defaultRegion":"IAD"}}}'
     http_version: 
-  recorded_at: Wed, 02 Jul 2014 20:13:05 GMT
+  recorded_at: Wed, 02 Jul 2014 20:12:50 GMT
+- request:
+    method: get
+    uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      X-Auth-Token:
+      - 889427f45c9c4310aeab80155c8fe40f
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '234'
+      X-Account-Object-Count:
+      - '4'
+      X-Timestamp:
+      - '1383334040.14400'
+      X-Account-Meta-Temp-Url-Key:
+      - c6c097a633ac898b7ab6e510684057b7
+      X-Account-Bytes-Used:
+      - '840'
+      X-Account-Container-Count:
+      - '5'
+      Content-Type:
+      - application/json; charset=utf-8
+      Accept-Ranges:
+      - bytes
+      X-Trans-Id:
+      - txf96b0cdf04fa4b81bc395-0053b467c0dfw1
+      Date:
+      - Wed, 02 Jul 2014 20:12:48 GMT
+    body:
+      encoding: UTF-8
+      string: '[{"count": 1, "bytes": 0, "name": "Joel''s"}, {"count": 0, "bytes":
+        0, "name": "foo"}, {"count": 0, "bytes": 0, "name": "foobarblech"}, {"count":
+        2, "bytes": 560, "name": "mikhailov"}, {"count": 1, "bytes": 280, "name":
+        "my-test-dir"}]'
+    http_version: 
+  recorded_at: Wed, 02 Jul 2014 20:12:51 GMT
 recorded_with: VCR 2.9.2

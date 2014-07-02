@@ -1,7 +1,7 @@
 module Redrax
   class AuthToken
     def initialize(hash)
-      @token = hash.dup.freeze
+      @token = hash['access']['token'].dup.freeze
     end
 
     def id
