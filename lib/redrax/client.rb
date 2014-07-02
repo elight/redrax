@@ -29,7 +29,7 @@ module Redrax
         .make_request(http_method, path, params, request_headers_with(headers))
 
       unless allowed_statuses.include?(resp.status)
-        fail Exception, "Oops"
+        fail Exception, "Received status #{resp.status} which is not in #{allowed_statuses.inspect}"
       end 
 
       JSON.parse(resp.body)
