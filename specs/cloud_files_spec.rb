@@ -27,13 +27,13 @@ describe Redrax::CloudFiles do
         mock_client.expect(:authenticate!, mock_client)
         
         cf.authenticate!
-
+        
         mock_client.verify
       end
     end
   end
 
-  describe "#list_containers", :vcr do
+  describe "requests", :vcr do
     let(:cf)      { 
       Redrax::CloudFiles.new.tap { |c|
         c.configure!(params).authenticate!
@@ -47,14 +47,24 @@ describe Redrax::CloudFiles do
       }
     }
 
-    it "get the user's list of containers, supplying a region for the req" do
-      assert cf.list_containers(:region => :dfw).length > 0
+    describe "#list_containers" do
+      it "get the user's list of containers, supplying a region for the req" do
+        assert cf.list_containers(:region => :dfw).length > 0
+      end
+
+      it "gets the user's list of containers, using the configured region" do
+        r1 = cf.list_containers(:region => :dfw)
+        r2 = cf.list_containers
+        refute_equal r1.length, r2.length
+      end
     end
 
-    it "gets the user's list of containers, using the configured region" do
-      r1 = cf.list_containers(:region => :dfw)
-      r2 = cf.list_containers
-      refute_equal r1.length, r2.length
+    describe "#container", :vcr do
+      it "gets the list of files within a specific container" do
+        file_list = cf.container("my-test-dir", :region => :dfw)
+        assert_instance_of Array, file_list
+        assert file_list.size > 0
+      end
     end
   end
 end

@@ -13,7 +13,8 @@ module Redrax
     end
 
     DOC_URLS = {
-      :list_containers => "http://docs.rackspace.com/files/api/v1/cf-devguide/content/GET_listcontainers_v1__account__accountServicesOperations_d1e000.html"
+      :list_containers => "http://docs.rackspace.com/files/api/v1/cf-devguide/content/GET_listcontainers_v1__account__accountServicesOperations_d1e000.html",
+      :container => "http://docs.rackspace.com/files/api/v1/cf-devguide/content/GET_listcontainerobjects_v1__account___container__containerServicesOperations_d1e000.html"
     }.freeze
 
     def api_docs(method = nil)
@@ -23,6 +24,10 @@ module Redrax
     
     def list_containers(options = {})
       client.request('', :get, [200, 203], {}, {}, options)
+    end
+    
+    def container(name, options = {})
+      client.request(name, :get, (200..299), {}, {}, options)
     end
   end
 end
