@@ -1,7 +1,8 @@
 require_relative 'spec_helper'
 
 describe Redrax::CloudFiles do
-  let(:cf) { Redrax::CloudFiles.new }
+  let(:client) { Minitest::Mock.new }
+  let(:cf)     { Redrax::CloudFiles.new(client) }
 
   let (:params) {
     {
@@ -12,23 +13,21 @@ describe Redrax::CloudFiles do
   
   describe "#configure!" do
     it "delegates configuration to its Client" do
-      cf.client = mock = Minitest::Mock.new
-      cf.client.expect(:configure!, mock, [params])
+      client.expect(:configure!, client, [params])
 
       cf.configure!(params)
 
-      mock.verify
+      client.verify
     end
   end
 
   describe "#authenticate!" do
     it "delegates authentication to its Client" do
-      cf.client = mock = Minitest::Mock.new
-      cf.client.expect(:authenticate!, mock)
+      client.expect(:authenticate!, client)
       
       cf.authenticate!
 
-      mock.verify
+      client.verify
     end
   end
 

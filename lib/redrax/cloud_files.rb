@@ -4,8 +4,10 @@ module Redrax
   class CloudFiles
     extend Forwardable
 
-    attr_accessor :client
-
     def_delegators :@client, :configure!, :authenticate!
+
+    def initialize(client = Redrax::Client.new)
+      @client = client
+    end
   end
 end
