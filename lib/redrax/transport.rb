@@ -14,4 +14,17 @@ class Transport < SimpleDelegator
     
     __setobj__(Faraday.new(:url => url))
   end 
+
+  # Hide the Faraday http request semantics behind this method
+  def make_request(method, path, params = {}, headers = {})
+    if [:post, :put, :patch].include?(method) 
+      send(method) do |r|
+        r.headers.merge!(headers)
+        r.url = path
+        r.body = params.to_json
+      end
+    else
+      send(method, path, params, headers)
+    end
+  end
 end

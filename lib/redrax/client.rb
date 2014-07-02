@@ -26,26 +26,15 @@ module Redrax
 
     def request(path, http_method, params = {}, headers= {}, options = {})
       headers = {
-         'Content-Type' => 'application/json',
+        'Content-Type' => 'application/json',
         'Accept' => 'application/json'
       }
       if auth_token
         headers['X-Auth-Token'] = auth_token.id
       end
 
-      trans = transport(options[:region])
-
-      # Faraday has different semantics between the various verbs
-      # Probably need to abstract this better...
-      if [:post, :put, :patch].include?(http_method) 
-        trans.send(http_method) do |r|
-          r.headers.merge!(headers)
-          r.url = path_prefix ? "#{path_prefix}/#{path}" : path
-          r.body = params.to_json
-        end
-      else
-        trans.send(http_method, path, params, headers)
-      end
+      transport(options[:region])
+        .make_request(http_method, path, params, headers)
     end
 
 
