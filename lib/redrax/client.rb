@@ -24,12 +24,30 @@ module Redrax
       authenticator.api_docs
     end
 
-    def request(path, http_method, allowed_statuses = [], params = {}, headers= {}, options = {})
-      resp = transport(options[:region])
-        .make_request(http_method, path, params, request_headers_with(headers))
+    # Request paths are prepended, as necessary, with each individual service's 
+    # version and the user's account. This prevents redundancy although it can
+    # possibly cause confusion when comparing a call to `#request` to 
+    # the API docs as the `:path` arg supplied to request specifies the suffix
+    # of the path to invoke the particular API call on a service.
+    # @param params (Hash) Accepts the following Symbol keys:
+    #   * method: the HTTP method to use
+    #   * path: the suffix to the API call's path, e.g., v1/{account}/{path is here}
+    #   * params: a Hash of arguments to pass on the HTTP request or the body of the HTTP request (depending upon the :method value)
+    #   * headers: a Hash of the HTTP headers. Note that Rackspace-specific values are appended to this for user identification purposes
+    #   * options: a Hash of options specifically regarding the behavior of the `request` method itself, e.g., specifying a `:region` for a single request differing from the Client's configured region
+    def request(params = {})
+      params[:headers] ||= {}
 
-      unless allowed_statuses.include?(resp.status)
-        fail Exception, "Received status #{resp.status} which is not in #{allowed_statuses.inspect}"
+      resp = transport(params.fetch(:options, {}).delete(:region))
+        .make_request(
+          params[:method], 
+          params[:path], 
+          params[:params], 
+          request_headers_with(params[:headers])
+        )
+
+      unless params[:expected].include?(resp.status)
+        fail Exception, "Received status #{resp.status} which is not in #{params[:expected].inspect}"
       end 
 
       JSON.parse(resp.body)
@@ -47,8 +65,6 @@ module Redrax
 
     # Client has one `Transport` per region.  Defaults to the init-time supplied
     # region but favors the `override_region` if present.
-    # @params override_region [Symbol] The Rackspace region to connect to. If 
-    #   `nil`, defaults to the `Client`'s `#configure!` d region
     def transport(override_region = nil)
       @transports ||= {}
       r = (override_region || region).to_s.upcase
