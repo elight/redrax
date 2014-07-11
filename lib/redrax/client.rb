@@ -45,8 +45,10 @@ module Redrax
       @auth_transport ||= AuthTransport.new
     end
 
-    # We have one Transport per region.  Defaults to the init-time supplied
-    # region but favors the override_region if present.
+    # Client has one `Transport` per region.  Defaults to the init-time supplied
+    # region but favors the `override_region` if present.
+    # @params override_region [Symbol] The Rackspace region to connect to. If 
+    #   `nil`, defaults to the `Client`'s `#configure!` d region
     def transport(override_region = nil)
       @transports ||= {}
       r = (override_region || region).to_s.upcase
