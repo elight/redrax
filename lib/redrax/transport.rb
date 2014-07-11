@@ -16,6 +16,7 @@ class Transport < SimpleDelegator
   end 
 
   # Hide the Faraday http request semantics behind this method
+  # TODO: We're going to want to wrap errors here as well
   def make_request(method, path, params = {}, headers = {})
     if [:post, :put, :patch].include?(method) 
       send(method) do |r|
