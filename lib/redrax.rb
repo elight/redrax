@@ -2,6 +2,7 @@ require 'redrax/version'
 require 'redrax/client'
 require 'redrax/configuration'
 require 'redrax/errors'
+require 'redrax/docs_linkable'
 
 require 'redrax/discovery'
 require 'redrax/authenticator_v2'
