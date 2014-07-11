@@ -16,10 +16,28 @@ module Redrax
       @doc_urls[method]
     end
 
-    # Ruby callback to capture when a new method is defined
+    # When a new method is added, alias it and wrap it in a new method that 
+    # responds to exceptions by adding the URL of the API docs to the exception
+    # message.
     def method_added(method)
+      return unless @current_doc_link
+
       @doc_urls ||= {}
       @doc_urls[method] = @current_doc_link
+
+      # Prevent infinite recursion on define_method below
+      @current_doc_link = nil
+
+      alias_method "old_#{method}".to_sym, method
+
+      define_method(method) do |*args|
+        begin
+          send("old_#{method}", *args)
+        rescue Exception => e
+          msg = e.message + "\n\nPlease refer to this URL for additional information on this API call:\n#{self.class.api_docs(method)}\n" 
+          raise e, msg, e.backtrace
+        end
+      end
     end
   end
 end
