@@ -43,7 +43,9 @@ class PaginatedContainers < SimpleDelegator
     @options    = options
   end
 
-  def next_page
+  def next_page(override_limit = nil)
+    options[:limit] = override_limit if override_limit
+
     containers.all(options.merge(marker: last["name"]))
   end
 end

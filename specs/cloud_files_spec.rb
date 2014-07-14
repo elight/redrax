@@ -58,13 +58,22 @@ describe Redrax::CloudFiles do
         refute_equal r1.length, r2.length
       end
 
-      it "handles pagination by returning a result set containing a call to the next page" do
-        r1 = cf.containers.all(:region => :dfw, :limit => 1) 
-        assert_equal 1, r1.size
-        assert_respond_to r1, :next_page
-        r2 = r1.next_page
-        assert_equal 1, r2.size
-        refute_equal r1.last["name"], r2.last["name"]
+      describe "#next_page" do
+        it "paginates by returning a result set containing a call to #next_page" do
+          r1 = cf.containers.all(:region => :dfw, :limit => 1) 
+          assert_equal 1, r1.size
+          assert_respond_to r1, :next_page
+          r2 = r1.next_page
+          assert_equal 1, r2.size
+          refute_equal r1.last["name"], r2.last["name"]
+        end
+
+        it "allows for the limit for the next page to be overridden" do
+          r1 = cf.containers.all(:region => :dfw, :limit => 1) 
+          r2 = r1.next_page(1_000)
+          assert r2.size > 1
+          assert r2.size < 1_000
+        end
       end
     end
 
