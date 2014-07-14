@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 14 Jul 2014 18:16:24 GMT
+      - Mon, 14 Jul 2014 18:16:28 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -31,7 +31,7 @@ http_interactions:
       Connection:
       - keep-alive
       X-Newrelic-App-Data:
-      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcAlwBWQJNHlNIFAIDB1RZUQRcWAMHUgdVVFcUbg==
+      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcA1wBUQVXH09VGhVQAlMPVVRSWVAGBAcHVlMDET8=
       Vary:
       - Accept, Accept-Encoding, X-Auth-Token
       Front-End-Https:
@@ -44,5 +44,99 @@ http_interactions:
         Role that allows a user access to keystone Service methods","name":"compute:default"},{"id":"10000150","description":"Checkmate
         Access role","name":"checkmate"}],"name":"<USERNAME>","RAX-AUTH:defaultRegion":"IAD"}}}'
     http_version: 
-  recorded_at: Mon, 14 Jul 2014 18:15:48 GMT
+  recorded_at: Mon, 14 Jul 2014 18:15:51 GMT
+- request:
+    method: get
+    uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911?limit=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      X-Auth-Token:
+      - d2d0d8cb988a467abdce6636c12ef596
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '44'
+      X-Account-Object-Count:
+      - '4'
+      X-Timestamp:
+      - '1383334040.14400'
+      X-Account-Meta-Temp-Url-Key:
+      - c6c097a633ac898b7ab6e510684057b7
+      X-Account-Bytes-Used:
+      - '840'
+      X-Account-Container-Count:
+      - '5'
+      Content-Type:
+      - application/json; charset=utf-8
+      Accept-Ranges:
+      - bytes
+      X-Trans-Id:
+      - txd29fe02b77ce45ac90a07-0053c41e7cdfw1
+      Date:
+      - Mon, 14 Jul 2014 18:16:29 GMT
+    body:
+      encoding: UTF-8
+      string: '[{"count": 1, "bytes": 0, "name": "Joel''s"}]'
+    http_version: 
+  recorded_at: Mon, 14 Jul 2014 18:15:53 GMT
+- request:
+    method: get
+    uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911?limit=1&marker=Joel's
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      X-Auth-Token:
+      - d2d0d8cb988a467abdce6636c12ef596
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '41'
+      X-Account-Object-Count:
+      - '4'
+      X-Timestamp:
+      - '1383334040.14400'
+      X-Account-Meta-Temp-Url-Key:
+      - c6c097a633ac898b7ab6e510684057b7
+      X-Account-Bytes-Used:
+      - '840'
+      X-Account-Container-Count:
+      - '5'
+      Content-Type:
+      - application/json; charset=utf-8
+      Accept-Ranges:
+      - bytes
+      X-Trans-Id:
+      - txb24666fe001d453abdde6-0053c41e7ddfw1
+      Date:
+      - Mon, 14 Jul 2014 18:16:30 GMT
+    body:
+      encoding: UTF-8
+      string: '[{"count": 0, "bytes": 0, "name": "foo"}]'
+    http_version: 
+  recorded_at: Mon, 14 Jul 2014 18:15:54 GMT
 recorded_with: VCR 2.9.2
