@@ -47,15 +47,24 @@ describe Redrax::CloudFiles do
       }
     }
 
-    describe "#list_containers" do
+    describe "#all" do
       it "get the user's list of containers, supplying a region for the req" do
-        assert cf.containers.list_containers(:region => :dfw).length > 0
+        assert cf.containers.all(:region => :dfw).length > 0
       end
 
       it "gets the user's list of containers, using the configured region" do
-        r1 = cf.containers.list_containers(:region => :dfw)
-        r2 = cf.containers.list_containers
+        r1 = cf.containers.all(:region => :dfw)
+        r2 = cf.containers.all
         refute_equal r1.length, r2.length
+      end
+
+      it "handles pagination by returning a result set containing a call to the next page" do
+        r1 = cf.containers.all(:region => :dfw, :limit => 1) 
+        assert_equal 1, r1.size
+        assert_respond_to r1, :next_page
+        r2 = r1.next_page
+        assert_equal 1, r2.size
+        refute_equal r1.last["name"], r2.last["name"]
       end
     end
 
