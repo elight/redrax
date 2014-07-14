@@ -49,19 +49,19 @@ describe Redrax::CloudFiles do
 
     describe "#list_containers" do
       it "get the user's list of containers, supplying a region for the req" do
-        assert cf.list_containers(:region => :dfw).length > 0
+        assert cf.containers.list_containers(:region => :dfw).length > 0
       end
 
       it "gets the user's list of containers, using the configured region" do
-        r1 = cf.list_containers(:region => :dfw)
-        r2 = cf.list_containers
+        r1 = cf.containers.list_containers(:region => :dfw)
+        r2 = cf.containers.list_containers
         refute_equal r1.length, r2.length
       end
     end
 
     describe "#container", :vcr do
       it "gets the list of files within a specific container" do
-        file_list = cf.container("my-test-dir", :region => :dfw)
+        file_list = cf.containers.container("my-test-dir", :region => :dfw)
         assert_instance_of Array, file_list
         assert file_list.size > 0
       end
