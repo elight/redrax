@@ -13,3 +13,4 @@ require 'redrax/service_catalog'
 
 require 'redrax/cloud_files'
 require 'redrax/containers'
+require 'redrax/container'

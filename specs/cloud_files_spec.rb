@@ -52,6 +52,10 @@ describe Redrax::CloudFiles do
         assert cf.containers.all(:region => :dfw).length > 0
       end
 
+      it "returns an Array containing Container objects" do
+        assert_instance_of Redrax::Container, cf.containers.all(:region => :dfw).first
+      end
+
       it "gets the user's list of containers, using the configured region" do
         r1 = cf.containers.all(:region => :dfw)
         r2 = cf.containers.all
@@ -65,7 +69,7 @@ describe Redrax::CloudFiles do
           assert_respond_to r1, :next_page
           r2 = r1.next_page
           assert_equal 1, r2.size
-          refute_equal r1.last["name"], r2.last["name"]
+          refute_equal r1.last.name, r2.last.name
         end
 
         it "allows for the limit for the next page to be overridden" do
@@ -79,10 +83,11 @@ describe Redrax::CloudFiles do
 
     describe "#container", :vcr do
       it "gets the list of files within a specific container" do
-        file_list = cf.containers.container("my-test-dir", :region => :dfw)
+        file_list = cf.containers["my-test-dir"].files(:region => :dfw)
         assert_instance_of Array, file_list
         assert file_list.size > 0
       end
     end
   end
 end
+
