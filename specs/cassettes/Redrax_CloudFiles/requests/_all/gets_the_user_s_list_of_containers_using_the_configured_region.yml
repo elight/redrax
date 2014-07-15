@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 15 Jul 2014 18:38:45 GMT
+      - Tue, 15 Jul 2014 21:18:09 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -31,7 +31,7 @@ http_interactions:
       Connection:
       - keep-alive
       X-Newrelic-App-Data:
-      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcA1IKWQZNHlNIFA9WUAULAVEAWVZRAA8HXQUUbg==
+      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcAlQPUwBZH09VGhVYBwELVgBXVFUBAwQDXAMPET8=
       Vary:
       - Accept, Accept-Encoding, X-Auth-Token
       Front-End-Https:
@@ -44,7 +44,7 @@ http_interactions:
         Role that allows a user access to keystone Service methods","name":"compute:default"},{"id":"10000150","description":"Checkmate
         Access role","name":"checkmate"}],"name":"<USERNAME>","RAX-AUTH:defaultRegion":"IAD"}}}'
     http_version: 
-  recorded_at: Tue, 15 Jul 2014 18:38:44 GMT
+  recorded_at: Tue, 15 Jul 2014 21:18:08 GMT
 - request:
     method: get
     uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911
@@ -84,9 +84,9 @@ http_interactions:
       Accept-Ranges:
       - bytes
       X-Trans-Id:
-      - tx1fe27e3de870484e9856f-0053c57536dfw1
+      - tx7aaaca6423634407b4844-0053c59a91dfw1
       Date:
-      - Tue, 15 Jul 2014 18:38:46 GMT
+      - Tue, 15 Jul 2014 21:18:09 GMT
     body:
       encoding: UTF-8
       string: '[{"count": 1, "bytes": 0, "name": "Joel''s"}, {"count": 0, "bytes":
@@ -94,7 +94,7 @@ http_interactions:
         2, "bytes": 560, "name": "mikhailov"}, {"count": 1, "bytes": 280, "name":
         "my-test-dir"}]'
     http_version: 
-  recorded_at: Tue, 15 Jul 2014 18:38:45 GMT
+  recorded_at: Tue, 15 Jul 2014 21:18:08 GMT
 - request:
     method: get
     uri: https://storage101.iad3.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911
@@ -134,12 +134,12 @@ http_interactions:
       Accept-Ranges:
       - bytes
       X-Trans-Id:
-      - txac576f3266f647b082f9d-0053c57536iad3
+      - txe129ef94afa84383af20e-0053c59a91iad3
       Date:
-      - Tue, 15 Jul 2014 18:38:46 GMT
+      - Tue, 15 Jul 2014 21:18:09 GMT
     body:
       encoding: UTF-8
       string: '[]'
     http_version: 
-  recorded_at: Tue, 15 Jul 2014 18:38:45 GMT
+  recorded_at: Tue, 15 Jul 2014 21:18:08 GMT
 recorded_with: VCR 2.9.2

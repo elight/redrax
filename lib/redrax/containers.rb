@@ -37,22 +37,14 @@ module Redrax
       Container.new(client, container_name)
     end
   end
-end
 
-module Redrax 
-  class PaginatedContainers < SimpleDelegator
-    attr_reader :containers, :options
-    
-    def initialize(results, containers, options = {:limit => 10_000})
-      super(results)
-      @containers = containers
-      @options    = options
-    end
+  class PaginatedContainers < PaginatedCollection
+    def marker_field
+      :name
+    end 
 
-    def next_page(override_limit = nil)
-      options[:limit] = override_limit if override_limit
-
-      containers.all(options.merge(marker: last.name))
+    def collection_method
+      :all
     end
   end
 end

@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 15 Jul 2014 21:16:55 GMT
+      - Tue, 15 Jul 2014 21:16:56 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -31,7 +31,7 @@ http_interactions:
       Connection:
       - keep-alive
       X-Newrelic-App-Data:
-      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcA1wPWAFTH09VGhVUXwJaB1ICUVIFCAAEAgAPET8=
+      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcAlcJUAFUH09VGhUEAFELClQCBAAACAFWBQlXET8=
       Vary:
       - Accept, Accept-Encoding, X-Auth-Token
       Front-End-Https:
@@ -44,7 +44,7 @@ http_interactions:
         Role that allows a user access to keystone Service methods","name":"compute:default"},{"id":"10000150","description":"Checkmate
         Access role","name":"checkmate"}],"name":"<USERNAME>","RAX-AUTH:defaultRegion":"IAD"}}}'
     http_version: 
-  recorded_at: Tue, 15 Jul 2014 21:16:54 GMT
+  recorded_at: Tue, 15 Jul 2014 21:16:55 GMT
 - request:
     method: get
     uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911/mikhailov?limit=1
@@ -80,13 +80,57 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       X-Trans-Id:
-      - tx6110ebf2a44f4863a4a81-0053c59a47dfw1
+      - tx032549b17ab44ed18b94f-0053c59a48dfw1
       Date:
-      - Tue, 15 Jul 2014 21:16:55 GMT
+      - Tue, 15 Jul 2014 21:16:56 GMT
     body:
       encoding: UTF-8
       string: '[{"hash": "794d9d685b517eae2a6b7eba2c2617c9", "last_modified": "2014-02-26T17:15:17.187000",
         "bytes": 280, "name": "README.md", "content_type": "application/x-ruby"}]'
     http_version: 
-  recorded_at: Tue, 15 Jul 2014 21:16:55 GMT
+  recorded_at: Tue, 15 Jul 2014 21:16:56 GMT
+- request:
+    method: get
+    uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911/mikhailov?limit=1&marker=README.md
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      X-Auth-Token:
+      - f746e9e8aa5240ce9e3aefafa4e274f7
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '168'
+      X-Container-Object-Count:
+      - '2'
+      Accept-Ranges:
+      - bytes
+      X-Timestamp:
+      - '1393434777.63511'
+      X-Container-Bytes-Used:
+      - '560'
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Trans-Id:
+      - tx81145a85d50f4e2ead570-0053c59a48dfw1
+      Date:
+      - Tue, 15 Jul 2014 21:16:56 GMT
+    body:
+      encoding: UTF-8
+      string: '[{"hash": "794d9d685b517eae2a6b7eba2c2617c9", "last_modified": "2014-02-26T17:16:08.304180",
+        "bytes": 280, "name": "skeleton.rb", "content_type": "application/x-ruby"}]'
+    http_version: 
+  recorded_at: Tue, 15 Jul 2014 21:16:56 GMT
 recorded_with: VCR 2.9.2

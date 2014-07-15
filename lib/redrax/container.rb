@@ -1,5 +1,3 @@
-require 'redrax/docs_linkable'
-
 module Redrax
   class Container
     extend Redrax::DocsLinkable
@@ -19,12 +17,27 @@ module Redrax
 
     docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/GET_listcontainerobjects_v1__account___container__containerServicesOperations_d1e000.html"
     def files(options = {})
-      client.request(
+      resp = client.request(
         method:   :get,
         path:     name,
         params:   options,
         expected: (200..299)
       )
+      PaginatedFiles.new(
+        resp.map { |f| Redrax::File.from_hash(client, f) },
+        self,
+        options
+      )
     end
   end
+
+  class PaginatedFiles < PaginatedCollection
+    def marker_field
+      :name
+    end
+
+    def collection_method
+      :files
+    end
+  end    
 end
