@@ -47,7 +47,7 @@ describe Redrax::CloudFiles do
       }
     }
 
-    describe "#all" do
+    describe "#list" do
       it "get the user's list of containers, supplying a region for the req" do
         assert cf.containers.list(:region => :dfw).length > 0
       end
