@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 02 Jul 2014 21:26:23 GMT
+      - Tue, 15 Jul 2014 21:16:54 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -31,12 +31,12 @@ http_interactions:
       Connection:
       - keep-alive
       X-Newrelic-App-Data:
-      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcA1UPVQNSH1VQGhUHV1QLCggHUFUOAwVVVQlVET8=
+      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcA1UMUghXH09VGhVVU1oMUFICUgRVBVNRXQcDET8=
       Vary:
       - Accept, Accept-Encoding, X-Auth-Token
     body:
       encoding: UTF-8
       string: '{"unauthorized":{"code":401,"message":"Username or api key is invalid."}}'
     http_version: 
-  recorded_at: Wed, 02 Jul 2014 21:26:22 GMT
+  recorded_at: Tue, 15 Jul 2014 21:16:54 GMT
 recorded_with: VCR 2.9.2

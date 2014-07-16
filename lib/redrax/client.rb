@@ -35,10 +35,15 @@ module Redrax
     #   * params: a Hash of arguments to pass on the HTTP request or the body of the HTTP request (depending upon the :method value)
     #   * headers: a Hash of the HTTP headers. Note that Rackspace-specific values are appended to this for user identification purposes
     #   * options: a Hash of options specifically regarding the behavior of the `request` method itself, e.g., specifying a `:region` for a single request differing from the Client's configured region
-    def request(params = {})
-      params[:headers] ||= {}
+    def request(options = {})
+      # Need a deep clone here
+      params = options.dup
+      params[:params] = options[:params].dup
 
-      resp = transport(params.fetch(:options, {}).delete(:region))
+      params[:headers] ||= {}
+      params[:params]  ||= {}
+
+      resp = transport(params[:params].delete(:region))
         .make_request(
           params[:method], 
           params[:path], 
