@@ -28,23 +28,31 @@ module Redrax
       options[:limit] = limit if limit
 
       collection.send(
-        collection_method, 
+        self.class.collection_name,
         options.merge(
-          marker: last.send(marker_field)
+          marker: last.send(self.class.field_name)
         )
       )
     end
 
     # @return [Symbol] The name of the method to call on the collection to
     #   get the value of the marker for the next page of data.
-    def marker_field
-      fail Exception, "Your PaginatedCollection subclass must provide a symbol representing the method to call on the paginated type to use as the API marker"
+    def self.marker_field(field_name)
+      @field_name = field_name
+    end
+
+    def self.field_name
+      @field_name
     end
 
     # @return [Symbol] The name of the method to call on the collection to
     #   call the API requesting the next page of data.
-    def collection_method
-      fail Exception, "Your PaginatedCollection subclass must provide a symbol representing the method to call on the paginated type to get the next page of data"
+    def self.collection_method(collection_name)
+      @collection_name = collection_name
+    end
+
+    def self.collection_name
+      @collection_name
     end
   end
 end

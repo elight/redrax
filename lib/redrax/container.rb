@@ -32,12 +32,7 @@ module Redrax
   end
 
   class PaginatedFiles < PaginatedCollection
-    def marker_field
-      :name
-    end
-
-    def collection_method
-      :files
-    end
-  end    
+    marker_field :name
+    collection_method :files
+  end
 end

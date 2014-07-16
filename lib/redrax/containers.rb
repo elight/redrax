@@ -39,13 +39,8 @@ module Redrax
   end
 
   class PaginatedContainers < PaginatedCollection
-    def marker_field
-      :name
-    end 
-
-    def collection_method
-      :all
-    end
+    marker_field :name
+    collection_method :all
   end
 end
 
