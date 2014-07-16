@@ -17,7 +17,7 @@ module Redrax
     # e.g., the maximum number of `Container`s to return in a single call.
     # @return [PaginatedContainers] An `Array` of `Containers` that supports 
     # pagination via the API
-    def all(options = {})
+    def list(options = {})
       resp = client.request(
         method:   :get,
         path:     '', 
@@ -40,7 +40,7 @@ module Redrax
 
   class PaginatedContainers < PaginatedCollection
     marker_field :name
-    collection_method :all
+    collection_method :list
   end
 end
 
