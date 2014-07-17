@@ -54,6 +54,21 @@ module Redrax
         @new_fields[k] = v
       end
 
+      def get!
+        resp = client.request(
+          method:   :head,
+          path:     container.name,
+          expects:  [204]
+        )
+        @dirty = false
+        @fields = resp.each_with_object({}) { |[k, v], h| 
+          if k =~ /^X-Container-Meta/
+            new_key = k.gsub(/^X-Container-Meta-/, "")
+            h[k] = v
+          end 
+        }
+      end
+
       def save!
         fields_added   = @new_fields.keys - @fields.keys
         fields_removed = @fields.keys - @new_fields.keys
