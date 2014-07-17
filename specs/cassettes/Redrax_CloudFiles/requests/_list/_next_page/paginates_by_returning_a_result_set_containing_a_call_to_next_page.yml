@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 16 Jul 2014 19:20:32 GMT
+      - Thu, 17 Jul 2014 18:19:11 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -31,7 +31,7 @@ http_interactions:
       Connection:
       - keep-alive
       X-Newrelic-App-Data:
-      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcAlAPUwFZCltIGwZNRAFcBVVRUAMCBA4HXQMAAEA7
+      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcA1IBVAJSH09VGhVTVAAJBAFXBAYOVVQDXQABET8=
       Vary:
       - Accept, Accept-Encoding, X-Auth-Token
       Front-End-Https:
@@ -44,7 +44,7 @@ http_interactions:
         Role that allows a user access to keystone Service methods","name":"compute:default"},{"id":"10000150","description":"Checkmate
         Access role","name":"checkmate"}],"name":"<USERNAME>","RAX-AUTH:defaultRegion":"IAD"}}}'
     http_version: 
-  recorded_at: Wed, 16 Jul 2014 19:20:34 GMT
+  recorded_at: Thu, 17 Jul 2014 18:18:12 GMT
 - request:
     method: get
     uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911?limit=1
@@ -84,14 +84,14 @@ http_interactions:
       Accept-Ranges:
       - bytes
       X-Trans-Id:
-      - tx1300b6dbf9554f9498b93-0053c6d081dfw1
+      - tx6dad14b1fd804e1ca9f14-0053c8139fdfw1
       Date:
-      - Wed, 16 Jul 2014 19:20:33 GMT
+      - Thu, 17 Jul 2014 18:19:11 GMT
     body:
       encoding: UTF-8
       string: '[{"count": 1, "bytes": 0, "name": "Joel''s"}]'
     http_version: 
-  recorded_at: Wed, 16 Jul 2014 19:20:34 GMT
+  recorded_at: Thu, 17 Jul 2014 18:18:12 GMT
 - request:
     method: get
     uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911?limit=1&marker=Joel's
@@ -131,12 +131,12 @@ http_interactions:
       Accept-Ranges:
       - bytes
       X-Trans-Id:
-      - tx43f1a99f874c4e1bb5265-0053c6d081dfw1
+      - txce8c7d39fcf743c9a0f81-0053c8139fdfw1
       Date:
-      - Wed, 16 Jul 2014 19:20:33 GMT
+      - Thu, 17 Jul 2014 18:19:11 GMT
     body:
       encoding: UTF-8
       string: '[{"count": 0, "bytes": 0, "name": "foo"}]'
     http_version: 
-  recorded_at: Wed, 16 Jul 2014 19:20:34 GMT
+  recorded_at: Thu, 17 Jul 2014 18:18:12 GMT
 recorded_with: VCR 2.9.2

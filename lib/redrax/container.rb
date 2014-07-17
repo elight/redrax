@@ -2,14 +2,15 @@ module Redrax
   class Container
     extend Redrax::DocsLinkable
     
-    attr_reader :client, :name, :count, :size
+    attr_reader :client, :name, :count, :size, :region
 
-    def self.from_hash(client, params = {})
-      new(client, *params.values_at("name", "count", "size"))
+    def self.from_hash(client, region, params = {})
+      new(client, region, *params.values_at("name", "count", "size"))
     end
 
-    def initialize(client, name, count = 0, size = 0)
+    def initialize(client, region, name, count = 0, size = 0)
       @client = client
+      @region = region
       @name   = name
       @count  = 0
       @size   = 0
@@ -17,6 +18,7 @@ module Redrax
 
     docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/GET_listcontainerobjects_v1__account___container__containerServicesOperations_d1e000.html"
     def files(options = {})
+      options[:region] ||= region || client.region
       resp = client.request(
         method:   :get,
         path:     name,
@@ -24,7 +26,7 @@ module Redrax
         expected: (200..299)
       )
       PaginatedFiles.new(
-        resp.map { |f| Redrax::File.from_hash(client, f) },
+        resp.map { |f| Redrax::File.from_hash(client, self, options[:region], f) },
         self,
         options
       )

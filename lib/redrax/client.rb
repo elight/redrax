@@ -39,6 +39,7 @@ module Redrax
       # Need a deep clone here
       params = options.dup
       params[:params] = options[:params].dup
+      do_not_parse = params[:params].delete(:do_not_parse)
 
       params[:headers] ||= {}
       params[:params]  ||= {}
@@ -55,7 +56,11 @@ module Redrax
         fail Exception, "Received status #{resp.status} which is not in #{params[:expected].inspect}"
       end 
 
-      JSON.parse(resp.body)
+      if do_not_parse
+        resp.body
+      else
+        JSON.parse(resp.body)
+      end
     end
     
     def region

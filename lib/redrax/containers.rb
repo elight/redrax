@@ -18,6 +18,7 @@ module Redrax
     # @return [PaginatedContainers] An `Array` of `Containers` that supports 
     # pagination via the API
     def list(options = {})
+      options[:region] ||= client.region
       resp = client.request(
         method:   :get,
         path:     '', 
@@ -25,7 +26,7 @@ module Redrax
         expected: [200, 203], 
       )
       PaginatedContainers.new(
-        resp.map { |c| Container.from_hash(client, c) }, 
+        resp.map { |c| Container.from_hash(client, options[:region], c) }, 
         self, 
         options
       )
@@ -34,7 +35,7 @@ module Redrax
     # Factory for `Container`s. Does *not* make an API call.
     # @return [Container] the newly created `Container`
     def [](container_name)
-      Container.new(client, container_name)
+      Container.new(client, client.region, container_name)
     end
   end
 

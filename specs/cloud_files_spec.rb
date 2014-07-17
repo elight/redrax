@@ -96,6 +96,15 @@ describe Redrax::CloudFiles do
         refute_equal f1.name, f2.name
       end
     end
+
+    describe "file #get", :vcr do
+      let(:file) { cf.containers["mikhailov"].files(:region => :dfw, :limit => 1).first }
+
+      it "downloads the file's contents" do
+        content = file.get
+        assert_equal file.bytes, content.length
+      end
+    end
   end
 end
 
