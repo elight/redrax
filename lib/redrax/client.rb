@@ -55,7 +55,11 @@ module Redrax
         fail Exception, "Received status #{resp.status} which is not in #{params[:expected].inspect}"
       end 
 
-      JSON.parse(resp.body)
+      if params[:method] == :head
+        resp.headers
+      else
+        JSON.parse(resp.body)
+      end
     end
     
     def region

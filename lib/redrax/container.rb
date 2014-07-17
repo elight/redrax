@@ -29,6 +29,44 @@ module Redrax
         options
       )
     end
+
+    def metadata
+      @metadata ||= Metadata.new(client)
+    end
+
+    class Metadata
+      def initialize(client)
+        @client = client
+      end
+
+      def get
+        client.request(
+          method:   :head,
+          path:     name,
+          expected: [204]
+        )
+      end
+
+      def update(args = {})
+        headers = prepend_to_keys(args, "X-Container-Meta-")
+        client.request(
+          method:   :post
+          path:     name,
+          headers:  headers,
+          expected: [204]
+        )
+      end
+
+      def delete(*keys)
+        headers = prepend_to_keys(args, "X-Remove-Container-Meta-")
+        client.request(
+          method:   :post
+          path:     name,
+          headers:  headers,
+          expected: [204]
+        )        
+      end
+    end
   end
 
   class PaginatedFiles < PaginatedCollection
