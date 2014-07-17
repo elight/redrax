@@ -31,7 +31,7 @@ module Redrax
     end
 
     def metadata
-      Metadata.new(client)
+      @metadata ||= Metadata.new(client)
     end
 
     class Metadata
