@@ -61,7 +61,8 @@ module Redrax
           expects:  [204]
         )
         @dirty = false
-        @fields = resp.each_with_object({}) { |[k, v], h| 
+        @fields = resp.each_with_object({}) { |kv, h| 
+          k, v = kv[0], kv[1]
           if k =~ /^X-Container-Meta/
             new_key = k.gsub(/^X-Container-Meta-/, "")
             h[k] = v
