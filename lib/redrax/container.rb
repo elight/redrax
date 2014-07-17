@@ -67,8 +67,9 @@ module Redrax
 
         client.request(
           method:   :post,
-          path:     container.name
-          headers:  headers
+          path:     container.name,
+          headers:  headers,
+          expects:  [204]
         )
         @dirty = false
         @fields = @new_fields
