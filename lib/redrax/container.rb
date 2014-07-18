@@ -53,17 +53,13 @@ module Redrax
       #   stripped of their "X-Container-Meta-" prefix, e.g.
       #   "X-Container-Meta-foo" will just be "foo" in the `Hash`.
       def get
-        client.request(
-          method:   :head,
-          path:     container_name,
-          expected: [204]
-        ).each_with_object({}) { |header, h|
-          k, v = header[0].downcase, header[1]
-          if k =~ /x-container-meta/
-            name = k.gsub(/^x-container-meta-/, "")
-            h[name] = v
-          end 
-        }
+        extract_metadata(
+          client.request(
+            method:   :head,
+            path:     container_name,
+            expected: [204]
+          )
+        )
       end
 
       docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/POST_updateacontainermeta_v1__account___container__containerServicesOperations_d1e000.html"
@@ -97,6 +93,18 @@ module Redrax
           headers:  headers,
           expected: [204]
         )        
+      end
+
+      private
+
+      def extract_metadata(headers)
+        headers.each_with_object({}) { |header, h|
+          k, v = header[0].downcase, header[1]
+          if k =~ /x-container-meta/
+            name = k.gsub(/^x-container-meta-/, "")
+            h[name] = v
+          end 
+        }
       end
     end
   end
