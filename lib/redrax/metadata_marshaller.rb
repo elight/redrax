@@ -1,5 +1,5 @@
 module Redrax
-  class KeyPrefixer
+  class MetadataMarshaller
     def call(hash, prefix)
       hash.each_with_object({}) { |kv, h|
         k, v = kv[0].to_s, kv[1].to_s

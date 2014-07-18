@@ -19,4 +19,4 @@ require 'redrax/containers'
 require 'redrax/container'
 require 'redrax/file'
 
-require 'redrax/key_prefixer'
+require 'redrax/metadata_marshaller'
