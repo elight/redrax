@@ -38,10 +38,9 @@ module Redrax
     def request(options = {})
       # Need a deep clone here
       params = options.dup
-      params[:params] = options[:params].dup
+      params[:params] = options.fetch(:params, {}).dup
 
       params[:headers] ||= {}
-      params[:params]  ||= {}
 
       resp = transport(params[:params].delete(:region))
         .make_request(
@@ -55,7 +54,13 @@ module Redrax
         fail Exception, "Received status #{resp.status} which is not in #{params[:expected].inspect}"
       end 
 
-      JSON.parse(resp.body)
+      if params[:method] == :head
+        resp.headers
+      elsif resp.body.length > 0
+        JSON.parse(resp.body)
+      else
+        ""
+      end
     end
     
     def region

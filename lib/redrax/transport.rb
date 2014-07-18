@@ -21,7 +21,7 @@ class Transport < SimpleDelegator
     if [:post, :put, :patch].include?(method) 
       send(method) do |r|
         r.headers.merge!(headers)
-        r.url = path
+        r.url path
         r.body = params.to_json
       end
     else

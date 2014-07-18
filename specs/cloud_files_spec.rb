@@ -97,5 +97,29 @@ describe Redrax::CloudFiles do
       end
     end
   end
+
+  describe Redrax::Container::Metadata, :vcr do
+    let(:meta) { 
+      params = {
+        user: ENV['RAX_USERNAME'],
+        api_key: ENV['RAX_API_KEY'],
+        region: :dfw
+      }
+      cf = Redrax::CloudFiles.new.tap { |c|
+        c.configure!(params).authenticate!
+      }
+      cf.containers["mikhailov"].metadata 
+    }
+        
+    it "can add and remove metadata from a container" do
+      meta.update(foo: :bar, baz: 42)
+      m = meta.get
+      assert_equal "bar", m["foo"]
+      assert_equal "42", m["baz"]
+      meta.delete(:foo, "baz")
+      m = meta.get
+      assert m.empty?
+    end
+  end
 end
 
