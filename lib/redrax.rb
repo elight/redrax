@@ -17,6 +17,7 @@ require 'redrax/paginated_collection'
 require 'redrax/cloud_files'
 require 'redrax/containers'
 require 'redrax/container'
+require 'redrax/files'
 require 'redrax/file'
 
 require 'redrax/metadata_marshaller'

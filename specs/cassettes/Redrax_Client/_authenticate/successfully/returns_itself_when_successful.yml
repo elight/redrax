@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 18 Jul 2014 15:30:28 GMT
+      - Fri, 18 Jul 2014 19:28:35 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -31,7 +31,7 @@ http_interactions:
       Connection:
       - keep-alive
       X-Newrelic-App-Data:
-      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcAlMLVQNTH09VGhVYX1QKCghSUFsOBgYEUhNr
+      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcAlYJVwZXH09VGhVQVVNeAQNcVFMEBQ4HXVdUET8=
       Vary:
       - Accept, Accept-Encoding, X-Auth-Token
       Front-End-Https:
@@ -44,5 +44,5 @@ http_interactions:
         Role that allows a user access to keystone Service methods","name":"compute:default"},{"id":"10000150","description":"Checkmate
         Access role","name":"checkmate"}],"name":"<USERNAME>","RAX-AUTH:defaultRegion":"IAD"}}}'
     http_version: 
-  recorded_at: Fri, 18 Jul 2014 15:29:23 GMT
+  recorded_at: Fri, 18 Jul 2014 19:28:39 GMT
 recorded_with: VCR 2.9.2

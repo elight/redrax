@@ -82,7 +82,7 @@ describe Redrax::CloudFiles do
     end
 
     describe "#container", :vcr do
-      let(:files) { cf.containers["mikhailov"].files(:region => :dfw, :limit => 1) }
+      let(:files) { cf.containers["mikhailov"].files.list(:region => :dfw, :limit => 1) }
 
       it "gets the list of files within a specific container" do
         assert_instance_of Redrax::PaginatedFiles, files
@@ -90,7 +90,7 @@ describe Redrax::CloudFiles do
         assert_instance_of Redrax::File, files.first
       end
 
-      it "paginates" do
+      it "paginates files" do
         f1 = files.first
         f2 = files.next_page.first
         refute_equal f1.name, f2.name
