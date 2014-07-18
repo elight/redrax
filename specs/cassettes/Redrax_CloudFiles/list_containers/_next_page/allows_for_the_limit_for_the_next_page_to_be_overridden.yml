@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 18 Jul 2014 15:30:23 GMT
+      - Fri, 18 Jul 2014 20:27:22 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -31,7 +31,7 @@ http_interactions:
       Connection:
       - keep-alive
       X-Newrelic-App-Data:
-      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcAlcKWQJSH09VGhUEX1NZVwkFBAQBCFZSU1RXET8=
+      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcA1wNVQFXH09VGhVWVgIAUVNWVVMPAgEFBwBTET8=
       Vary:
       - Accept, Accept-Encoding, X-Auth-Token
       Front-End-Https:
@@ -44,10 +44,10 @@ http_interactions:
         Role that allows a user access to keystone Service methods","name":"compute:default"},{"id":"10000150","description":"Checkmate
         Access role","name":"checkmate"}],"name":"<USERNAME>","RAX-AUTH:defaultRegion":"IAD"}}}'
     http_version: 
-  recorded_at: Fri, 18 Jul 2014 15:29:17 GMT
+  recorded_at: Fri, 18 Jul 2014 20:27:25 GMT
 - request:
     method: get
-    uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911/mikhailov?limit=1
+    uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911?limit=1
     body:
       encoding: US-ASCII
       string: ''
@@ -68,30 +68,33 @@ http_interactions:
       message: OK
     headers:
       Content-Length:
-      - '166'
-      X-Container-Object-Count:
-      - '2'
-      Accept-Ranges:
-      - bytes
+      - '44'
+      X-Account-Object-Count:
+      - '4'
       X-Timestamp:
-      - '1393434777.63511'
-      X-Container-Bytes-Used:
-      - '560'
+      - '1383334040.14400'
+      X-Account-Meta-Temp-Url-Key:
+      - c6c097a633ac898b7ab6e510684057b7
+      X-Account-Bytes-Used:
+      - '840'
+      X-Account-Container-Count:
+      - '5'
       Content-Type:
       - application/json; charset=utf-8
+      Accept-Ranges:
+      - bytes
       X-Trans-Id:
-      - tx2ce06956412d48cfa5e43-0053c93d8fdfw1
+      - txf731f074decb46a7946f6-0053c9832adfw1
       Date:
-      - Fri, 18 Jul 2014 15:30:23 GMT
+      - Fri, 18 Jul 2014 20:27:22 GMT
     body:
       encoding: UTF-8
-      string: '[{"hash": "794d9d685b517eae2a6b7eba2c2617c9", "last_modified": "2014-02-26T17:15:17.187000",
-        "bytes": 280, "name": "README.md", "content_type": "application/x-ruby"}]'
+      string: '[{"count": 1, "bytes": 0, "name": "Joel''s"}]'
     http_version: 
-  recorded_at: Fri, 18 Jul 2014 15:29:18 GMT
+  recorded_at: Fri, 18 Jul 2014 20:27:25 GMT
 - request:
     method: get
-    uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911/mikhailov?limit=1&marker=README.md
+    uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911?limit=1000&marker=Joel's
     body:
       encoding: US-ASCII
       string: ''
@@ -112,25 +115,30 @@ http_interactions:
       message: OK
     headers:
       Content-Length:
-      - '168'
-      X-Container-Object-Count:
-      - '2'
-      Accept-Ranges:
-      - bytes
+      - '190'
+      X-Account-Object-Count:
+      - '4'
       X-Timestamp:
-      - '1393434777.63511'
-      X-Container-Bytes-Used:
-      - '560'
+      - '1383334040.14400'
+      X-Account-Meta-Temp-Url-Key:
+      - c6c097a633ac898b7ab6e510684057b7
+      X-Account-Bytes-Used:
+      - '840'
+      X-Account-Container-Count:
+      - '5'
       Content-Type:
       - application/json; charset=utf-8
+      Accept-Ranges:
+      - bytes
       X-Trans-Id:
-      - txbe705e96b01d438c9140d-0053c93d8fdfw1
+      - txdba00f7ccfdc4424aa33b-0053c9832adfw1
       Date:
-      - Fri, 18 Jul 2014 15:30:23 GMT
+      - Fri, 18 Jul 2014 20:27:22 GMT
     body:
       encoding: UTF-8
-      string: '[{"hash": "794d9d685b517eae2a6b7eba2c2617c9", "last_modified": "2014-02-26T17:16:08.304180",
-        "bytes": 280, "name": "skeleton.rb", "content_type": "application/x-ruby"}]'
+      string: '[{"count": 0, "bytes": 0, "name": "foo"}, {"count": 0, "bytes": 0,
+        "name": "foobarblech"}, {"count": 2, "bytes": 560, "name": "mikhailov"}, {"count":
+        1, "bytes": 280, "name": "my-test-dir"}]'
     http_version: 
-  recorded_at: Fri, 18 Jul 2014 15:29:18 GMT
+  recorded_at: Fri, 18 Jul 2014 20:27:26 GMT
 recorded_with: VCR 2.9.2
