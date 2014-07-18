@@ -49,7 +49,7 @@ module Redrax
         @fields[k]
       end
 
-      def [](k, v)
+      def []=(k, v)
         @dirty = true
         @new_fields[k] = v
       end
