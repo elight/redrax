@@ -69,7 +69,11 @@ module Redrax
       docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/POST_updateacontainermeta_v1__account___container__containerServicesOperations_d1e000.html"
       # @param args [Hash] Key-values to set as metadata on this container.
       def update(args = {})
-        headers = MetadataMarshaller.new.call(args, "X-Container-Meta-")
+        headers = MetadataMarshaller.new.call(
+          args, 
+          "X-Container-Meta-",
+          wrong: "X-Remove-Container-Meta-"
+        )
         client.request(
           method:   :post,
           path:     container_name,
@@ -84,7 +88,8 @@ module Redrax
       def delete(*keys)
         headers = MetadataMarshaller.new.call(
           keys.each_with_object({}) { |k, h| h[k] = 1 },
-          "X-Remove-Container-Meta-"
+          "X-Remove-Container-Meta-",
+          wrong: "X-Container-Meta-"
         )
         client.request(
           method:   :post,
