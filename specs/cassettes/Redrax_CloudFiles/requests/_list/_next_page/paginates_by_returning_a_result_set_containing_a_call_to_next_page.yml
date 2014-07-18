@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 18 Jul 2014 14:50:47 GMT
+      - Fri, 18 Jul 2014 15:30:31 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -31,7 +31,7 @@ http_interactions:
       Connection:
       - keep-alive
       X-Newrelic-App-Data:
-      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcA1wMVQdQH09VGhUAUgcNVwldVFFRAlNSAVcGET8=
+      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcA1wPVAVWH09VGhVVAFtaVQhQAAFRVFFeBQlSET8=
       Vary:
       - Accept, Accept-Encoding, X-Auth-Token
       Front-End-Https:
@@ -44,7 +44,7 @@ http_interactions:
         Role that allows a user access to keystone Service methods","name":"compute:default"},{"id":"10000150","description":"Checkmate
         Access role","name":"checkmate"}],"name":"<USERNAME>","RAX-AUTH:defaultRegion":"IAD"}}}'
     http_version: 
-  recorded_at: Fri, 18 Jul 2014 14:49:42 GMT
+  recorded_at: Fri, 18 Jul 2014 15:29:26 GMT
 - request:
     method: get
     uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911?limit=1
@@ -84,14 +84,14 @@ http_interactions:
       Accept-Ranges:
       - bytes
       X-Trans-Id:
-      - tx93fc4148dec04f70b629b-0053c93447dfw1
+      - tx1a9184251e0a4c968d7dc-0053c93d97dfw1
       Date:
-      - Fri, 18 Jul 2014 14:50:47 GMT
+      - Fri, 18 Jul 2014 15:30:31 GMT
     body:
       encoding: UTF-8
       string: '[{"count": 1, "bytes": 0, "name": "Joel''s"}]'
     http_version: 
-  recorded_at: Fri, 18 Jul 2014 14:49:42 GMT
+  recorded_at: Fri, 18 Jul 2014 15:29:26 GMT
 - request:
     method: get
     uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911?limit=1&marker=Joel's
@@ -131,12 +131,12 @@ http_interactions:
       Accept-Ranges:
       - bytes
       X-Trans-Id:
-      - tx5fdce2490e1047cf833a7-0053c93448dfw1
+      - tx486499d7b7d84dbda22fa-0053c93d98dfw1
       Date:
-      - Fri, 18 Jul 2014 14:50:48 GMT
+      - Fri, 18 Jul 2014 15:30:32 GMT
     body:
       encoding: UTF-8
       string: '[{"count": 0, "bytes": 0, "name": "foo"}]'
     http_version: 
-  recorded_at: Fri, 18 Jul 2014 14:49:42 GMT
+  recorded_at: Fri, 18 Jul 2014 15:29:26 GMT
 recorded_with: VCR 2.9.2

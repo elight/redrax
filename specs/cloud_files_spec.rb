@@ -116,7 +116,7 @@ describe Redrax::CloudFiles do
       m = meta.get
       assert_equal "bar", m["foo"]
       assert_equal "42", m["baz"]
-      meta.delete(:foo, :baz)
+      meta.delete(:foo, "baz")
       m = meta.get
       assert m.empty?
     end
