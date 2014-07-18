@@ -29,6 +29,67 @@ module Redrax
         options
       )
     end
+
+    def metadata
+      @metadata ||= Metadata.new(client)
+    end
+
+    class Metadata
+      attr_reader :client
+
+      def initialize(client, container, fields = {})
+        @client     = client
+        @container  = container
+        @fields     = fields
+        @new_fields = fields.dup
+        @dirty      = false
+      end
+
+      def [](k)
+        @fields[k]
+      end
+
+      def []=(k, v)
+        @dirty = true
+        @new_fields[k] = v
+      end
+
+      def get!
+        resp = client.request(
+          method:   :head,
+          path:     container.name,
+          expects:  [204]
+        )
+        @dirty = false
+        @fields = resp.each_with_object({}) { |kv, h| 
+          k, v = kv[0], kv[1]
+          if k =~ /^X-Container-Meta/
+            new_key = k.gsub(/^X-Container-Meta-/, "")
+            h[k] = v
+          end 
+        }
+      end
+
+      def save!
+        fields_added   = @new_fields.keys - @fields.keys
+        fields_removed = @fields.keys - @new_fields.keys
+
+        headers = fields_added.each_with_object({}) { |f, h|
+          h["X-Container-Meta-#{f}"] = @new_fields[f]
+        }
+        headers = fields_removed.each_with_object(headers) { |f, h|
+          h["X-Remove-Container-Meta-#{f}"] = 1
+        }
+
+        client.request(
+          method:   :post,
+          path:     container.name,
+          headers:  headers,
+          expects:  [204]
+        )
+        @dirty = false
+        @fields = @new_fields
+    end
   end
 
   class PaginatedFiles < PaginatedCollection
