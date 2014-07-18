@@ -2,7 +2,7 @@ module Redrax
   class Container
     extend Redrax::DocsLinkable
     
-    attr_reader :client, :name, :count, :size, :files
+    attr_reader :client, :name, :count, :size
 
     def self.from_hash(client, params = {})
       new(client, *params.values_at("name", "count", "size"))
@@ -13,7 +13,10 @@ module Redrax
       @name   = name
       @count  = 0
       @size   = 0
-      @files  = Files.new(client, self)
+    end
+
+    def files
+      @files ||= Files.new(client, self)
     end
 
     # @return [Redrax::Metadata] The `Metadata` object for this `Container`
