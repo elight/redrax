@@ -81,19 +81,31 @@ describe Redrax::CloudFiles do
       end
     end
 
-    describe "#container", :vcr do
-      let(:files) { cf.containers["mikhailov"].files.list(:region => :dfw, :limit => 1) }
+    describe "#container #files", :vcr do
+      let(:files) { cf.containers["mikhailov"].files }
 
-      it "gets the list of files within a specific container" do
-        assert_instance_of Redrax::PaginatedFiles, files
-        assert_equal files.size, 1
-        assert_instance_of Redrax::File, files.first
+      describe "#list" do 
+        let(:list) { files.list(:region => :dfw, :limit => 1) }
+
+        it "gets the list of files within a specific container" do
+          assert_instance_of Redrax::PaginatedFiles, list
+          assert_equal list.size, 1
+          assert_instance_of Redrax::File, list.first
+        end
+
+        it "paginates list" do
+          f1 = list.first
+          f2 = list.next_page.first
+          refute_equal f1.name, f2.name
+        end
       end
 
-      it "paginates files" do
-        f1 = files.first
-        f2 = files.next_page.first
-        refute_equal f1.name, f2.name
+      describe "#[]" do
+        it "creates a new local File object" do
+          file = files["foo"]
+          assert_instance_of Redrax::File, file
+          assert_equal "foo", file.name
+        end
       end
     end
   end
