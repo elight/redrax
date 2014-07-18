@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 18 Jul 2014 19:39:11 GMT
+      - Fri, 18 Jul 2014 20:27:25 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -31,7 +31,7 @@ http_interactions:
       Connection:
       - keep-alive
       X-Newrelic-App-Data:
-      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcAlUBWQBQH09VGhVUVFoBUgRRBVMAAwFXVQkPET8=
+      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcAlIMUwBVH09VGhVXA1cJClVUAlZWUwIAVFBUET8=
       Vary:
       - Accept, Accept-Encoding, X-Auth-Token
       Front-End-Https:
@@ -44,7 +44,7 @@ http_interactions:
         Role that allows a user access to keystone Service methods","name":"compute:default"},{"id":"10000150","description":"Checkmate
         Access role","name":"checkmate"}],"name":"<USERNAME>","RAX-AUTH:defaultRegion":"IAD"}}}'
     http_version: 
-  recorded_at: Fri, 18 Jul 2014 19:39:15 GMT
+  recorded_at: Fri, 18 Jul 2014 20:27:28 GMT
 - request:
     method: get
     uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911/mikhailov?limit=1
@@ -80,13 +80,13 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       X-Trans-Id:
-      - txe2565e7f29c84c7cbbee7-0053c977dfdfw1
+      - tx4101099cfe294701ab5ba-0053c9832ddfw1
       Date:
-      - Fri, 18 Jul 2014 19:39:11 GMT
+      - Fri, 18 Jul 2014 20:27:25 GMT
     body:
       encoding: UTF-8
       string: '[{"hash": "794d9d685b517eae2a6b7eba2c2617c9", "last_modified": "2014-02-26T17:15:17.187000",
         "bytes": 280, "name": "README.md", "content_type": "application/x-ruby"}]'
     http_version: 
-  recorded_at: Fri, 18 Jul 2014 19:39:15 GMT
+  recorded_at: Fri, 18 Jul 2014 20:27:29 GMT
 recorded_with: VCR 2.9.2

@@ -33,104 +33,48 @@ describe Redrax::CloudFiles do
     end
   end
 
-  describe "requests", :vcr do
+  describe "list containers", :vcr do
     let(:cf)      { 
-      Redrax::CloudFiles.new.tap { |c|
-        c.configure!(params).authenticate!
-      }
-    }
-    let (:params) {
-      {
+      cf = Redrax::CloudFiles.new
+      cf.configure!(
         user: ENV['RAX_USERNAME'],
         api_key: ENV['RAX_API_KEY'],
         region: :iad
-      }
+      )
+      cf.authenticate!
+      cf
     }
 
-    describe "#list" do
-      it "get the user's list of containers, supplying a region for the req" do
-        assert cf.containers.list(:region => :dfw).length > 0
-      end
-
-      it "returns an Array containing Container objects" do
-        assert_instance_of Redrax::Container, cf.containers.list(:region => :dfw).first
-      end
-
-      it "gets the user's list of containers, using the configured region" do
-        r1 = cf.containers.list(:region => :dfw)
-        r2 = cf.containers.list
-        refute_equal r1.length, r2.length
-      end
-
-      describe "#next_page" do
-        it "paginates by returning a result set containing a call to #next_page" do
-          r1 = cf.containers.list(:region => :dfw, :limit => 1) 
-          assert_equal 1, r1.size
-          assert_respond_to r1, :next_page
-          r2 = r1.next_page
-          assert_equal 1, r2.size
-          refute_equal r1.last.name, r2.last.name
-        end
-
-        it "allows for the limit for the next page to be overridden" do
-          r1 = cf.containers.list(:region => :dfw, :limit => 1) 
-          r2 = r1.next_page(1_000)
-          assert r2.size > 1
-          assert r2.size < 1_000
-        end
-      end
+    it "get the user's list of containers, supplying a region for the req" do
+      assert cf.containers.list(:region => :dfw).length > 0
     end
 
-    describe "#container #files", :vcr do
-      let(:files) { cf.containers["mikhailov"].files }
-
-      describe "#list" do 
-        let(:list) { files.list(:region => :dfw, :limit => 1) }
-
-        it "gets the list of files within a specific container" do
-          assert_instance_of Redrax::PaginatedFiles, list
-          assert_equal list.size, 1
-          assert_instance_of Redrax::File, list.first
-        end
-
-        it "paginates list" do
-          f1 = list.first
-          f2 = list.next_page.first
-          refute_equal f1.name, f2.name
-        end
-      end
-
-      describe "#[]" do
-        it "creates a new local File object" do
-          file = files["foo"]
-          assert_instance_of Redrax::File, file
-          assert_equal "foo", file.name
-        end
-      end
+    it "returns an Array containing Container objects" do
+      assert_instance_of Redrax::Container, cf.containers.list(:region => :dfw).first
     end
-  end
 
-  describe Redrax::Container::Metadata, :vcr do
-    let(:meta) { 
-      params = {
-        user: ENV['RAX_USERNAME'],
-        api_key: ENV['RAX_API_KEY'],
-        region: :dfw
-      }
-      cf = Redrax::CloudFiles.new.tap { |c|
-        c.configure!(params).authenticate!
-      }
-      cf.containers["mikhailov"].metadata 
-    }
-        
-    it "can add and remove metadata from a container" do
-      meta.update(foo: :bar, baz: 42)
-      m = meta.get
-      assert_equal "bar", m["foo"]
-      assert_equal "42", m["baz"]
-      meta.delete(:foo, "baz")
-      m = meta.get
-      assert m.empty?
+    it "gets the user's list of containers, using the configured region" do
+      r1 = cf.containers.list(:region => :dfw)
+      r2 = cf.containers.list
+      refute_equal r1.length, r2.length
+    end
+
+    describe "#next_page" do
+      it "paginates by returning a result set containing a call to #next_page" do
+        r1 = cf.containers.list(:region => :dfw, :limit => 1) 
+        assert_equal 1, r1.size
+        assert_respond_to r1, :next_page
+        r2 = r1.next_page
+        assert_equal 1, r2.size
+        refute_equal r1.last.name, r2.last.name
+      end
+
+      it "allows for the limit for the next page to be overridden" do
+        r1 = cf.containers.list(:region => :dfw, :limit => 1) 
+        r2 = r1.next_page(1_000)
+        assert r2.size > 1
+        assert r2.size < 1_000
+      end
     end
   end
 end
