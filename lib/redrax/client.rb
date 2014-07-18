@@ -38,10 +38,9 @@ module Redrax
     def request(options = {})
       # Need a deep clone here
       params = options.dup
-      params[:params] = options[:params].dup
+      params[:params] = options.fetch(:params, {}).dup
 
       params[:headers] ||= {}
-      params[:params]  ||= {}
 
       resp = transport(params[:params].delete(:region))
         .make_request(
@@ -57,8 +56,10 @@ module Redrax
 
       if params[:method] == :head
         resp.headers
-      else
+      elsif resp.body.length > 0
         JSON.parse(resp.body)
+      else
+        ""
       end
     end
     

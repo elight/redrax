@@ -31,44 +31,65 @@ module Redrax
     end
 
     def metadata
-      @metadata ||= Metadata.new(client)
+      @metadata ||= Metadata.new(client, self)
     end
 
     class Metadata
-      def initialize(client)
+      attr_reader :client, :container_name
+      
+      def initialize(client, container)
         @client = client
+        @container_name = container.name
       end
 
       def get
         client.request(
           method:   :head,
-          path:     name,
+          path:     container_name,
           expected: [204]
-        )
+        ).each_with_object({}) { |header, h|
+          k, v = header[0].downcase, header[1]
+          if k =~ /x-container-meta/
+            name = k.gsub(/^x-container-meta-/, "")
+            h[name] = v
+          end 
+        }
       end
 
       def update(args = {})
         headers = prepend_to_keys(args, "X-Container-Meta-")
         client.request(
-          method:   :post
-          path:     name,
+          method:   :post,
+          path:     container_name,
           headers:  headers,
           expected: [204]
         )
       end
 
       def delete(*keys)
-        headers = prepend_to_keys(args, "X-Remove-Container-Meta-")
+        headers = prepend_to_keys(
+          keys.each_with_object({}) { |k, h| h[k] = 1 },
+          "X-Remove-Container-Meta-"
+        )
         client.request(
-          method:   :post
-          path:     name,
+          method:   :post,
+          path:     container_name,
           headers:  headers,
           expected: [204]
         )        
       end
+
+      private
+
+      def prepend_to_keys(hash, prefix)
+        hash.each_with_object({}) { |kv, h|
+          k, v = kv[0], kv[1]
+          h[prefix + k.to_s] = v.to_s
+        }
+      end
     end
   end
-
+ 
   class PaginatedFiles < PaginatedCollection
     marker_field :name
     collection_method :files
