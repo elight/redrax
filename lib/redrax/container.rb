@@ -25,6 +25,9 @@ module Redrax
     end
 
     docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/PUT_createcontainer_v1__account___container__containerServicesOperations_d1e000.html"
+    # Creates a container in Cloud Files.
+    # @param args [Hash] Optional arguments
+    #   * metadata: a Hash of key values to store as metadata on the new container
     def create(args = {})
       client.request(
         method:   :put,
@@ -38,7 +41,9 @@ module Redrax
       )
     end
 
-    def delete(args = {})
+    docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/DELETE_deletecontainer_v1__account___container__containerServicesOperations_d1e000.html"
+    # Deletes a container from Cloud Files
+    def delete
       client.request(
         method:   :delete,
         path:     name,
