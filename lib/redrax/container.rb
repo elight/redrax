@@ -111,9 +111,9 @@ module Redrax
 
       def extract_metadata(headers)
         headers.each_with_object({}) { |header, h|
-          k, v = header[0].downcase, header[1]
-          if k =~ /x-container-meta/
-            name = k.gsub(/^x-container-meta-/, "")
+          (k, v) = header
+          if k =~ /x-container-meta/i
+            name = k.gsub(/^x-container-meta-/i, "")
             h[name] = v
           end 
         }
