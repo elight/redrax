@@ -10,8 +10,11 @@ module Redrax
     end
 
     docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/GET_listcontainerobjects_v1__account___container__containerServicesOperations_d1e000.html"
-    # @return [PaginatedFiles] An `Array` of `File` objects proxying for files
-    #   stored on this `Container`.
+    # Queries for all of the `File`s matching the query.
+    # NOTE: the API documents some default limitations for this API call,
+    # e.g., the maximum number of `File`s to return in a single call.
+    # @return [PaginatedFiles] An `Array` of `Files` that supports 
+    # pagination via the API
     def list(options = {})
       resp = client.request(
         method:   :get,
@@ -26,6 +29,8 @@ module Redrax
       )
     end
 
+    # Factory for `Redrax::File`s. Does *not* make an API call.
+    # @return [File] the newly created `Redrax::File`
     def [](name)
       File.new(client, container, name)
     end
