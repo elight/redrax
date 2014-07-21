@@ -24,6 +24,33 @@ module Redrax
       @metadata ||= Metadata.new(client, self)
     end
 
+    docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/PUT_createcontainer_v1__account___container__containerServicesOperations_d1e000.html"
+    # Creates a container in Cloud Files.
+    # @param args [Hash] Optional arguments
+    #   * metadata: a Hash of key values to store as metadata on the new container
+    def create(args = {})
+      client.request(
+        method:   :put,
+        path:     name,
+        headers:  MetadataMarshaller.new.call(
+          args.fetch(:metadata, {}),
+          "X-Container-Meta-",
+          wrong: "X-Remove-Container-Meta-"
+        ),   
+        expected: [201, 202]
+      )
+    end
+
+    docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/DELETE_deletecontainer_v1__account___container__containerServicesOperations_d1e000.html"
+    # Deletes a container from Cloud Files
+    def delete
+      client.request(
+        method:   :delete,
+        path:     name,
+        expected: 204
+      )
+    end
+
     # Behavior for manipulating metadata on a container
     class Metadata
       extend Redrax::DocsLinkable
@@ -31,7 +58,7 @@ module Redrax
       attr_reader :client, :container_name
       
       def initialize(client, container)
-        @client = client
+        @client         = client
         @container_name = container.name
       end
 
@@ -52,15 +79,14 @@ module Redrax
       docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/POST_updateacontainermeta_v1__account___container__containerServicesOperations_d1e000.html"
       # @param args [Hash] Key-values to set as metadata on this container.
       def update(args = {})
-        headers = MetadataMarshaller.new.call(
-          args, 
-          "X-Container-Meta-",
-          wrong: "X-Remove-Container-Meta-"
-        )
         client.request(
           method:   :post,
           path:     container_name,
-          headers:  headers,
+          headers:  MetadataMarshaller.new.call(
+            args,
+            "X-Container-Meta-",
+            wrong: "X-Remove-Container-Meta-"
+          ),   
           expected: [204]
         )
       end
@@ -69,15 +95,14 @@ module Redrax
       # @params keys [Array] The list of metadata fields to delete from this 
       #   container.
       def delete(*keys)
-        headers = MetadataMarshaller.new.call(
-          keys.each_with_object({}) { |k, h| h[k] = 1 },
-          "X-Remove-Container-Meta-",
-          wrong: "X-Container-Meta-"
-        )
         client.request(
           method:   :post,
           path:     container_name,
-          headers:  headers,
+          headers:  MetadataMarshaller.new.call(
+            keys.each_with_object({}) { |k, h| h[k] = 1 },
+            "X-Remove-Container-Meta-",
+            wrong: "X-Container-Meta-"
+          ),
           expected: [204]
         )        
       end
