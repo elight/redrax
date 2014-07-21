@@ -24,6 +24,15 @@ module Redrax
       @metadata ||= Metadata.new(client, self)
     end
 
+    docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/PUT_createcontainer_v1__account___container__containerServicesOperations_d1e000.html"
+    def create
+      client.request(
+        method:   :put,
+        path:     name,
+        expected: [201, 202]
+      )
+    end
+
     # Behavior for manipulating metadata on a container
     class Metadata
       extend Redrax::DocsLinkable

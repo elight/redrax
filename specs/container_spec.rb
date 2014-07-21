@@ -1,16 +1,30 @@
 require_relative 'spec_helper'
 
 describe Redrax::Container, :vcr  do
-  let(:container) { 
-    cf = Redrax::CloudFiles.new
-    cf.configure!(
-      user: ENV['RAX_USERNAME'],
-      api_key: ENV['RAX_API_KEY'],
-      region: :dfw
-    )
-    cf.authenticate!
+  let(:cf) { 
+    Redrax::CloudFiles.new.tap { |c|
+      c.configure!(
+        user: ENV['RAX_USERNAME'],
+        api_key: ENV['RAX_API_KEY'],
+        region: :dfw
+      )
+      c.authenticate!
+    }
+  }
+  let(:container) {
     cf.containers["mikhailov"]
   }
+
+  describe "#create" do
+    let(:container_name) { "a_new_container" }
+    let (:new_container) { cf.containers[container_name] }
+
+    it "creates the container in Cloud Files" do
+      resp = new_container.create
+      containers = cf.containers.list
+      assert containers.one? { |c| c.name == container_name }
+    end
+  end
 
   describe "#files" do
     let(:files) { container.files }
