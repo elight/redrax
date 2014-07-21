@@ -32,12 +32,12 @@ module Redrax
       client.request(
         method:   :put,
         path:     name,
+        expected: [201, 202],
         headers:  MetadataMarshaller.new.call(
           args.fetch(:metadata, {}),
           "X-Container-Meta-",
           wrong: "X-Remove-Container-Meta-"
-        ),   
-        expected: [201, 202]
+        )
       )
     end
 
@@ -71,7 +71,7 @@ module Redrax
           client.request(
             method:   :head,
             path:     container_name,
-            expected: [204]
+            expected: 204
           )
         )
       end
@@ -82,12 +82,12 @@ module Redrax
         client.request(
           method:   :post,
           path:     container_name,
+          expected: 204,
           headers:  MetadataMarshaller.new.call(
             args,
             "X-Container-Meta-",
             wrong: "X-Remove-Container-Meta-"
-          ),   
-          expected: [204]
+          )
         )
       end
 
@@ -98,12 +98,12 @@ module Redrax
         client.request(
           method:   :post,
           path:     container_name,
+          expected: 204,
           headers:  MetadataMarshaller.new.call(
             keys.each_with_object({}) { |k, h| h[k] = 1 },
             "X-Remove-Container-Meta-",
             wrong: "X-Container-Meta-"
-          ),
-          expected: [204]
+          )
         )        
       end
 

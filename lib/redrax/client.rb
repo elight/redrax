@@ -39,9 +39,8 @@ module Redrax
       # Need a deep clone here
       params = options.dup
       params[:params] = options.fetch(:params, {}).dup
-
-      params[:headers] ||= {}
-
+      params[:headers] = options.fetch(:headers, {}).dup
+      
       resp = transport(params[:params].delete(:region))
         .make_request(
           params[:method], 
@@ -56,8 +55,10 @@ module Redrax
 
       if params[:method] == :head
         resp.headers
-      elsif resp.body.length > 0
+      elsif resp.headers["content-type"] =~ /application\/json/i
         JSON.parse(resp.body)
+      elsif resp.body.length > 0
+        resp.body
       else
         ""
       end
@@ -91,10 +92,10 @@ module Redrax
     end
 
     def request_headers_with(user_headers)
-      user_headers.merge(
+      {
         'Content-Type' => 'application/json',
         'Accept' => 'application/json'
-      ).tap { |h|
+      }.merge(user_headers).tap { |h|
         if auth_token
           h['X-Auth-Token'] = auth_token.id
         end
