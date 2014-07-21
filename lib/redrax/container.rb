@@ -25,11 +25,28 @@ module Redrax
     end
 
     docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/PUT_createcontainer_v1__account___container__containerServicesOperations_d1e000.html"
-    def create
-      client.request(
+    def create(args = {})
+      params = {
         method:   :put,
         path:     name,
         expected: [201, 202]
+      }
+      if args[:metadata]
+        headers = MetadataMarshaller.new.call(
+          args[:metadata], 
+          "X-Container-Meta-",
+          wrong: "X-Remove-Container-Meta-"
+        )        
+        params.merge!(headers: headers)
+      end
+      client.request(params)
+    end
+
+    def delete(args = {})
+      client.request(
+        method:   :delete,
+        path:     name,
+        expected: 204
       )
     end
 

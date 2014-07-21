@@ -15,14 +15,30 @@ describe Redrax::Container, :vcr  do
     cf.containers["mikhailov"]
   }
 
-  describe "#create" do
+  describe "#create and #delete" do
     let(:container_name) { "a_new_container" }
     let (:new_container) { cf.containers[container_name] }
 
     it "creates the container in Cloud Files" do
       resp = new_container.create
+
       containers = cf.containers.list
       assert containers.one? { |c| c.name == container_name }
+
+      new_container.delete
+
+      containers = cf.containers.list
+      assert containers.none? { |c| c.name == container_name }      
+    end
+
+    it "can create the container with metadata" do
+      resp = new_container.create(metadata: {foo: 42})
+      meta = new_container.metadata.get
+      new_container.delete
+
+      assert_includes meta.keys, "foo"
+      assert_equal "42", meta["foo"]
+      
     end
   end
 
