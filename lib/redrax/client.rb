@@ -50,7 +50,7 @@ module Redrax
           request_headers_with(params[:headers])
         )
 
-      unless params[:expected].include?(resp.status)
+      unless Array(params[:expected]).include?(resp.status)
         fail Exception, "Received status #{resp.status} which is not in #{params[:expected].inspect}"
       end 
 
