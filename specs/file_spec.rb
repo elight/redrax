@@ -11,9 +11,7 @@ describe Redrax::File, :vcr do
     cf.authenticate!
     cf.containers["test_container"]
   }
-  let(:file) {
-    container.files["new_file"]
-  }
+  let(:file) { container.files["new_file"] }
 
   before do
     container.create
