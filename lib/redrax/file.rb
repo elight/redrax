@@ -40,6 +40,9 @@ module Redrax
       )
     end
 
+    docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/GET_getobjectdata_v1__account___container___object__objectServicesOperations_d1e000.html"
+    # Gets an object from Cloud Files.
+    # TODO: Return metadata as well. Currently returns only the object contents. 
     def get
       client.request(
         method:   :get,
