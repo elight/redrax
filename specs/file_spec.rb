@@ -20,8 +20,8 @@ describe Redrax::File, :vcr do
   end
 
   after do
-#    file.delete
-#    container.delete
+    file.delete
+    container.delete
   end
 
   it "can create w/ metadata and delete a file in Cloud Files" do
