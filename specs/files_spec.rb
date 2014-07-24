@@ -31,18 +31,20 @@ describe Redrax::Files, :vcr do
     end
   end
 
-  it "can create w/ metadata and delete a file in Cloud Files" do
-    files.create(
-      container_name, 
-      file_name,
-      "Ohai",
-      :metadata => { "foo" => 42 },
-      :headers => { "content-type" => "text/plain" }
-    )
+  describe "#create" do
+    it "can create w/ metadata and delete a file in Cloud Files" do
+      files.create(
+        container_name, 
+        file_name,
+        "Ohai",
+        :metadata => { "foo" => 42 },
+        :headers => { "content-type" => "text/plain" }
+      )
 
-    file = files.list(container_name).first
-    body = files.get(container_name, file_name)
+      file = files.list(container_name).first
+      body = files.get(container_name, file_name)
 
-    assert_equal "\"Ohai\"", body
+      assert_equal "\"Ohai\"", body
+    end
   end
 end

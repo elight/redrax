@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 24 Jul 2014 15:48:45 GMT
+      - Thu, 24 Jul 2014 16:41:13 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -31,7 +31,7 @@ http_interactions:
       Connection:
       - keep-alive
       X-Newrelic-App-Data:
-      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcA10MVQNYH09VGhUEUloMC1NWVVYPUgAFXVQPET8=
+      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcAlcLWAJYH09VGhVTUVNeAQddBwcHBVEFUQUGET8=
       Vary:
       - Accept, Accept-Encoding, X-Auth-Token
       Front-End-Https:
@@ -44,7 +44,7 @@ http_interactions:
         Role that allows a user access to keystone Service methods","name":"compute:default"},{"id":"10000150","description":"Checkmate
         Access role","name":"checkmate"}],"name":"<USERNAME>","RAX-AUTH:defaultRegion":"IAD"}}}'
     http_version: 
-  recorded_at: Thu, 24 Jul 2014 15:48:51 GMT
+  recorded_at: Thu, 24 Jul 2014 16:41:19 GMT
 - request:
     method: put
     uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911/a_new_container
@@ -74,14 +74,14 @@ http_interactions:
       Content-Type:
       - text/html; charset=UTF-8
       X-Trans-Id:
-      - txda2a592e4839495988a41-0053d12adddfw1
+      - txf1eaa37fddc640fc81b0c-0053d13729dfw1
       Date:
-      - Thu, 24 Jul 2014 15:48:45 GMT
+      - Thu, 24 Jul 2014 16:41:13 GMT
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Thu, 24 Jul 2014 15:48:51 GMT
+  recorded_at: Thu, 24 Jul 2014 16:41:19 GMT
 - request:
     method: head
     uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911/a_new_container
@@ -117,14 +117,14 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       X-Trans-Id:
-      - tx20979727ac974fe2ae806-0053d12adddfw1
+      - tx8342005cee834c6c8e957-0053d13729dfw1
       Date:
-      - Thu, 24 Jul 2014 15:48:45 GMT
+      - Thu, 24 Jul 2014 16:41:13 GMT
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Thu, 24 Jul 2014 15:48:51 GMT
+  recorded_at: Thu, 24 Jul 2014 16:41:19 GMT
 - request:
     method: delete
     uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911/a_new_container
@@ -152,12 +152,12 @@ http_interactions:
       Content-Type:
       - text/html; charset=UTF-8
       X-Trans-Id:
-      - txb4ef7796dfd2469aa6532-0053d12adddfw1
+      - txc043dcf807734399aa520-0053d13729dfw1
       Date:
-      - Thu, 24 Jul 2014 15:48:45 GMT
+      - Thu, 24 Jul 2014 16:41:14 GMT
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Thu, 24 Jul 2014 15:48:51 GMT
+  recorded_at: Thu, 24 Jul 2014 16:41:20 GMT
 recorded_with: VCR 2.9.2

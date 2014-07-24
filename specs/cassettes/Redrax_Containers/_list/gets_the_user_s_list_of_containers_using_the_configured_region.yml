@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 24 Jul 2014 15:48:48 GMT
+      - Thu, 24 Jul 2014 16:41:15 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -31,7 +31,7 @@ http_interactions:
       Connection:
       - keep-alive
       X-Newrelic-App-Data:
-      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcA1IBVAZYH09VGhUEVlJaUQZWUlIPBA5WXQkDET8=
+      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcA10LUQlYH09VGhUFV1YNAwhSVVsGBwYEVANUET8=
       Vary:
       - Accept, Accept-Encoding, X-Auth-Token
       Front-End-Https:
@@ -44,10 +44,10 @@ http_interactions:
         Role that allows a user access to keystone Service methods","name":"compute:default"},{"id":"10000150","description":"Checkmate
         Access role","name":"checkmate"}],"name":"<USERNAME>","RAX-AUTH:defaultRegion":"IAD"}}}'
     http_version: 
-  recorded_at: Thu, 24 Jul 2014 15:48:54 GMT
+  recorded_at: Thu, 24 Jul 2014 16:41:21 GMT
 - request:
     method: get
-    uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911?limit=1
+    uri: https://storage101.iad3.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911
     body:
       encoding: US-ASCII
       string: ''
@@ -68,33 +68,33 @@ http_interactions:
       message: OK
     headers:
       Content-Length:
-      - '44'
+      - '52'
       X-Account-Object-Count:
-      - '4'
+      - '1'
       X-Timestamp:
-      - '1383334040.14400'
+      - '1387843465.15413'
       X-Account-Meta-Temp-Url-Key:
-      - c6c097a633ac898b7ab6e510684057b7
+      - 2f10446fc54cdf3caabc9b6634a248ec
       X-Account-Bytes-Used:
-      - '840'
+      - '6'
       X-Account-Container-Count:
-      - '5'
+      - '1'
       Content-Type:
       - application/json; charset=utf-8
       Accept-Ranges:
       - bytes
       X-Trans-Id:
-      - tx7666b86451844c77a9e86-0053d12ae0dfw1
+      - tx8882cce0861843e9b2f7d-0053d1372biad3
       Date:
-      - Thu, 24 Jul 2014 15:48:48 GMT
+      - Thu, 24 Jul 2014 16:41:15 GMT
     body:
       encoding: UTF-8
-      string: '[{"count": 1, "bytes": 0, "name": "Joel''s"}]'
+      string: '[{"count": 1, "bytes": 6, "name": "test_container"}]'
     http_version: 
-  recorded_at: Thu, 24 Jul 2014 15:48:54 GMT
+  recorded_at: Thu, 24 Jul 2014 16:41:21 GMT
 - request:
     method: get
-    uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911?limit=1&marker=Joel's
+    uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911
     body:
       encoding: US-ASCII
       string: ''
@@ -115,7 +115,7 @@ http_interactions:
       message: OK
     headers:
       Content-Length:
-      - '41'
+      - '234'
       X-Account-Object-Count:
       - '4'
       X-Timestamp:
@@ -131,12 +131,15 @@ http_interactions:
       Accept-Ranges:
       - bytes
       X-Trans-Id:
-      - tx52be2fbdb6724777a589c-0053d12ae0dfw1
+      - txeccd7623fe0e4e078f0ad-0053d1372bdfw1
       Date:
-      - Thu, 24 Jul 2014 15:48:49 GMT
+      - Thu, 24 Jul 2014 16:41:15 GMT
     body:
       encoding: UTF-8
-      string: '[{"count": 0, "bytes": 0, "name": "foo"}]'
+      string: '[{"count": 1, "bytes": 0, "name": "Joel''s"}, {"count": 0, "bytes":
+        0, "name": "foo"}, {"count": 0, "bytes": 0, "name": "foobarblech"}, {"count":
+        2, "bytes": 560, "name": "mikhailov"}, {"count": 1, "bytes": 280, "name":
+        "my-test-dir"}]'
     http_version: 
-  recorded_at: Thu, 24 Jul 2014 15:48:55 GMT
+  recorded_at: Thu, 24 Jul 2014 16:41:21 GMT
 recorded_with: VCR 2.9.2

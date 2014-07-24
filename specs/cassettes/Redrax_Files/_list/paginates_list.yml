@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 24 Jul 2014 15:48:54 GMT
+      - Thu, 24 Jul 2014 16:41:22 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -31,7 +31,7 @@ http_interactions:
       Connection:
       - keep-alive
       X-Newrelic-App-Data:
-      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcA1IAUQNSH09VGhUAVVBdClZWAwYGVFJfUlUAET8=
+      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcA10KUgZXH09VGhUEBVJaVgJUVAdVVw4FXARQET8=
       Vary:
       - Accept, Accept-Encoding, X-Auth-Token
       Front-End-Https:
@@ -44,7 +44,7 @@ http_interactions:
         Role that allows a user access to keystone Service methods","name":"compute:default"},{"id":"10000150","description":"Checkmate
         Access role","name":"checkmate"}],"name":"<USERNAME>","RAX-AUTH:defaultRegion":"IAD"}}}'
     http_version: 
-  recorded_at: Thu, 24 Jul 2014 15:49:00 GMT
+  recorded_at: Thu, 24 Jul 2014 16:41:28 GMT
 - request:
     method: get
     uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911/mikhailov?limit=1
@@ -80,15 +80,15 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       X-Trans-Id:
-      - tx792a88b26a5a4454aa7e2-0053d12ae6dfw1
+      - txd35cdf5a9e6543c0bd616-0053d13732dfw1
       Date:
-      - Thu, 24 Jul 2014 15:48:54 GMT
+      - Thu, 24 Jul 2014 16:41:22 GMT
     body:
       encoding: UTF-8
       string: '[{"hash": "794d9d685b517eae2a6b7eba2c2617c9", "last_modified": "2014-02-26T17:15:17.187000",
         "bytes": 280, "name": "README.md", "content_type": "application/x-ruby"}]'
     http_version: 
-  recorded_at: Thu, 24 Jul 2014 15:49:00 GMT
+  recorded_at: Thu, 24 Jul 2014 16:41:28 GMT
 - request:
     method: get
     uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911/mikhailov?limit=1&marker=README.md
@@ -124,13 +124,13 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       X-Trans-Id:
-      - txbe4b0574d1e341eaa9b8f-0053d12ae6dfw1
+      - tx173ede58b49642cca9465-0053d13732dfw1
       Date:
-      - Thu, 24 Jul 2014 15:48:54 GMT
+      - Thu, 24 Jul 2014 16:41:22 GMT
     body:
       encoding: UTF-8
       string: '[{"hash": "794d9d685b517eae2a6b7eba2c2617c9", "last_modified": "2014-02-26T17:16:08.304180",
         "bytes": 280, "name": "skeleton.rb", "content_type": "application/x-ruby"}]'
     http_version: 
-  recorded_at: Thu, 24 Jul 2014 15:49:00 GMT
+  recorded_at: Thu, 24 Jul 2014 16:41:28 GMT
 recorded_with: VCR 2.9.2

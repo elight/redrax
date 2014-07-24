@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 24 Jul 2014 16:41:17 GMT
+      - Thu, 24 Jul 2014 16:41:21 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -31,7 +31,7 @@ http_interactions:
       Connection:
       - keep-alive
       X-Newrelic-App-Data:
-      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcAlcMWAhXH09VGhVYX1sMVgEAAAZRVVIEBhNr
+      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcAlUAUQJSH09VGhVXAFdZAlFWWAAHAg5UVAAPET8=
       Vary:
       - Accept, Accept-Encoding, X-Auth-Token
       Front-End-Https:
@@ -44,10 +44,10 @@ http_interactions:
         Role that allows a user access to keystone Service methods","name":"compute:default"},{"id":"10000150","description":"Checkmate
         Access role","name":"checkmate"}],"name":"<USERNAME>","RAX-AUTH:defaultRegion":"IAD"}}}'
     http_version: 
-  recorded_at: Thu, 24 Jul 2014 16:41:23 GMT
+  recorded_at: Thu, 24 Jul 2014 16:41:27 GMT
 - request:
     method: get
-    uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911
+    uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911/mikhailov?limit=1
     body:
       encoding: US-ASCII
       string: ''
@@ -68,31 +68,25 @@ http_interactions:
       message: OK
     headers:
       Content-Length:
-      - '234'
-      X-Account-Object-Count:
-      - '4'
-      X-Timestamp:
-      - '1383334040.14400'
-      X-Account-Meta-Temp-Url-Key:
-      - c6c097a633ac898b7ab6e510684057b7
-      X-Account-Bytes-Used:
-      - '840'
-      X-Account-Container-Count:
-      - '5'
-      Content-Type:
-      - application/json; charset=utf-8
+      - '166'
+      X-Container-Object-Count:
+      - '3'
       Accept-Ranges:
       - bytes
+      X-Timestamp:
+      - '1393434777.63511'
+      X-Container-Bytes-Used:
+      - '566'
+      Content-Type:
+      - application/json; charset=utf-8
       X-Trans-Id:
-      - tx308b23d2695345da98f48-0053d1372ddfw1
+      - tx2b89ad3bf5f448a9881cd-0053d13731dfw1
       Date:
-      - Thu, 24 Jul 2014 16:41:18 GMT
+      - Thu, 24 Jul 2014 16:41:21 GMT
     body:
       encoding: UTF-8
-      string: '[{"count": 1, "bytes": 0, "name": "Joel''s"}, {"count": 0, "bytes":
-        0, "name": "foo"}, {"count": 0, "bytes": 0, "name": "foobarblech"}, {"count":
-        2, "bytes": 560, "name": "mikhailov"}, {"count": 1, "bytes": 280, "name":
-        "my-test-dir"}]'
+      string: '[{"hash": "794d9d685b517eae2a6b7eba2c2617c9", "last_modified": "2014-02-26T17:15:17.187000",
+        "bytes": 280, "name": "README.md", "content_type": "application/x-ruby"}]'
     http_version: 
-  recorded_at: Thu, 24 Jul 2014 16:41:24 GMT
+  recorded_at: Thu, 24 Jul 2014 16:41:27 GMT
 recorded_with: VCR 2.9.2
