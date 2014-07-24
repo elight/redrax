@@ -6,7 +6,7 @@ module Redrax
   # You want to subclass `PaginatedCollection` and not create and use instances
   # of it directly.
   class PaginatedCollection < SimpleDelegator
-    attr_reader :collection, :options
+    attr_reader :collection, :options, :scoping
 
     # @param results [Array] The data returned from the API call to paginate
     # @param collection [Object] Redrax Object that responds to the 
@@ -14,9 +14,10 @@ module Redrax
     #   subclass of PaginatedCollection.
     # @param options [Hash] Optional arguments allowing:
     #   * :limit: The default size of each page
-    def initialize(results, collection, options = {:limit => 10_000})
+    def initialize(results, collection, scoping = nil, options = {:limit => 10_000})
       super(results)
       @collection = collection
+      @scoping    = scoping
       @options    = options
     end
 
@@ -25,14 +26,15 @@ module Redrax
     # @return [PaginatedCollection] Another `PaginatedCollection` containing
     #   the next page of data.
     def next_page(limit = nil)
-      options[:limit] = limit if limit
+      @options[:limit]  = limit if limit
+      @options[:marker] = last.send(self.class.field_name)
 
-      collection.send(
-        self.class.collection_name,
-        options.merge(
-          marker: last.send(self.class.field_name)
-        )
-      )
+      args = []
+      args << self.class.collection_name
+      args << scoping if scoping
+      args << options
+
+      collection.send(*args)
     end
 
     # @return [Symbol] The name of the method to call on the collection to

@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 24 Jul 2014 15:48:53 GMT
+      - Thu, 24 Jul 2014 15:48:52 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -31,7 +31,7 @@ http_interactions:
       Connection:
       - keep-alive
       X-Newrelic-App-Data:
-      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcA1wMUARUH09VGhUDB1UIV1FSAAYEA1FVBlUGET8=
+      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcA1IMWAZYH09VGhUAAFBZAVVVVgYFBwFWB1JTET8=
       Vary:
       - Accept, Accept-Encoding, X-Auth-Token
       Front-End-Https:
@@ -44,5 +44,139 @@ http_interactions:
         Role that allows a user access to keystone Service methods","name":"compute:default"},{"id":"10000150","description":"Checkmate
         Access role","name":"checkmate"}],"name":"<USERNAME>","RAX-AUTH:defaultRegion":"IAD"}}}'
     http_version: 
-  recorded_at: Thu, 24 Jul 2014 15:48:59 GMT
+  recorded_at: Thu, 24 Jul 2014 15:48:58 GMT
+- request:
+    method: put
+    uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911/mikhailov/test_file
+    body:
+      encoding: UTF-8
+      string: '"Ohai"'
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Content-Type:
+      - text/plain
+      Accept:
+      - application/json
+      X-Object-Meta-Foo:
+      - '42'
+      X-Auth-Token:
+      - aaa30a69aaaa4ade83f32df91656357f
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Last-Modified:
+      - Thu, 24 Jul 2014 15:48:53 GMT
+      Content-Length:
+      - '0'
+      Etag:
+      - 49c0e2bcd421f3c92552f5da99bec22b
+      Content-Type:
+      - text/html; charset=UTF-8
+      X-Trans-Id:
+      - tx8c0880f082a940a99f956-0053d12ae4dfw1
+      Date:
+      - Thu, 24 Jul 2014 15:48:52 GMT
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Thu, 24 Jul 2014 15:48:58 GMT
+- request:
+    method: get
+    uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911/mikhailov
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      X-Auth-Token:
+      - aaa30a69aaaa4ade83f32df91656357f
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '490'
+      X-Container-Object-Count:
+      - '3'
+      Accept-Ranges:
+      - bytes
+      X-Timestamp:
+      - '1393434777.63511'
+      X-Container-Bytes-Used:
+      - '566'
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Trans-Id:
+      - tx1dbe4b50ca804cbbae90c-0053d12ae4dfw1
+      Date:
+      - Thu, 24 Jul 2014 15:48:52 GMT
+    body:
+      encoding: UTF-8
+      string: '[{"hash": "794d9d685b517eae2a6b7eba2c2617c9", "last_modified": "2014-02-26T17:15:17.187000",
+        "bytes": 280, "name": "README.md", "content_type": "application/x-ruby"},
+        {"hash": "794d9d685b517eae2a6b7eba2c2617c9", "last_modified": "2014-02-26T17:16:08.304180",
+        "bytes": 280, "name": "skeleton.rb", "content_type": "application/x-ruby"},
+        {"hash": "49c0e2bcd421f3c92552f5da99bec22b", "last_modified": "2014-07-24T15:48:52.160660",
+        "bytes": 6, "name": "test_file", "content_type": "text/plain"}]'
+    http_version: 
+  recorded_at: Thu, 24 Jul 2014 15:48:58 GMT
+- request:
+    method: get
+    uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911/mikhailov/test_file
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      X-Auth-Token:
+      - aaa30a69aaaa4ade83f32df91656357f
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '6'
+      Accept-Ranges:
+      - bytes
+      Last-Modified:
+      - Thu, 24 Jul 2014 15:48:53 GMT
+      Etag:
+      - 49c0e2bcd421f3c92552f5da99bec22b
+      X-Timestamp:
+      - '1406216932.16066'
+      X-Object-Meta-Foo:
+      - '42'
+      Content-Type:
+      - text/plain
+      X-Trans-Id:
+      - tx018373384dbe4f61aa1da-0053d12ae4dfw1
+      Date:
+      - Thu, 24 Jul 2014 15:48:52 GMT
+    body:
+      encoding: UTF-8
+      string: '"Ohai"'
+    http_version: 
+  recorded_at: Thu, 24 Jul 2014 15:48:58 GMT
 recorded_with: VCR 2.9.2
