@@ -53,7 +53,9 @@ module Redrax
         fail Exception, "Received status #{resp.status} which is not in #{params[:expected].inspect}"
       end 
 
-      if params[:method] == :head
+      if params[:raw_response]
+        resp
+      elsif params[:method] == :head
         resp.headers
       elsif resp.headers["content-type"] =~ /application\/json/i
         JSON.parse(resp.body)

@@ -67,7 +67,8 @@ module Redrax
     #   stripped of their "X-Container-Meta-" prefix, e.g.
     #   "X-Container-Meta-foo" will just be "foo" in the `Hash`.
     def get_metadata(name)
-      extract_metadata(
+      MetadataExtractor.new.call(
+        "x-container-meta",
         client.request(
           method:   :head,
           path:     name,
@@ -111,16 +112,6 @@ module Redrax
     end
 
     private
-
-    def extract_metadata(headers)
-      headers.each_with_object({}) { |header, h|
-        (k, v) = header
-        if k =~ /x-container-meta/i
-          name = k.gsub(/^x-container-meta-/i, "")
-          h[name] = v
-        end 
-      }
-    end
 
     class PaginatedContainers < PaginatedCollection
       marker_field :name

@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 24 Jul 2014 16:41:19 GMT
+      - Thu, 24 Jul 2014 18:53:48 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -31,7 +31,7 @@ http_interactions:
       Connection:
       - keep-alive
       X-Newrelic-App-Data:
-      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcA1IKWQVWH09VGhVYA1MKBlRSU1oFAAYHB1UBET8=
+      - PxQGUF9aDwETVlhSBQgFVUYdFGQHBDcQUQxLA1tMXV1dORYzVBJHNQFUZAQUFVFQVThOFlhaUggXER5jLTU3SxJOCEwIFAQcA10IUwRUH09VGhVXVQUKVgAAAlBTBwdTUgIAET8=
       Vary:
       - Accept, Accept-Encoding, X-Auth-Token
       Front-End-Https:
@@ -44,7 +44,7 @@ http_interactions:
         Role that allows a user access to keystone Service methods","name":"compute:default"},{"id":"10000150","description":"Checkmate
         Access role","name":"checkmate"}],"name":"<USERNAME>","RAX-AUTH:defaultRegion":"IAD"}}}'
     http_version: 
-  recorded_at: Thu, 24 Jul 2014 16:41:25 GMT
+  recorded_at: Thu, 24 Jul 2014 18:53:55 GMT
 - request:
     method: post
     uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911/mikhailov
@@ -76,14 +76,14 @@ http_interactions:
       Content-Type:
       - text/html; charset=UTF-8
       X-Trans-Id:
-      - txa78ea2c9064a478ba48cb-0053d1372fdfw1
+      - tx64d9e8119abf4c589931e-0053d1563cdfw1
       Date:
-      - Thu, 24 Jul 2014 16:41:20 GMT
+      - Thu, 24 Jul 2014 18:53:48 GMT
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Thu, 24 Jul 2014 16:41:26 GMT
+  recorded_at: Thu, 24 Jul 2014 18:53:55 GMT
 - request:
     method: head
     uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911/mikhailov
@@ -107,7 +107,7 @@ http_interactions:
       Content-Length:
       - '0'
       X-Container-Object-Count:
-      - '3'
+      - '2'
       Accept-Ranges:
       - bytes
       X-Container-Meta-Baz:
@@ -117,18 +117,18 @@ http_interactions:
       X-Container-Meta-Foo:
       - bar
       X-Container-Bytes-Used:
-      - '566'
+      - '560'
       Content-Type:
       - application/json; charset=utf-8
       X-Trans-Id:
-      - tx35af1b6a7987406581350-0053d13730dfw1
+      - tx767f2cc7fe004a929425d-0053d1563cdfw1
       Date:
-      - Thu, 24 Jul 2014 16:41:21 GMT
+      - Thu, 24 Jul 2014 18:53:48 GMT
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Thu, 24 Jul 2014 16:41:26 GMT
+  recorded_at: Thu, 24 Jul 2014 18:53:55 GMT
 - request:
     method: post
     uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911/mikhailov
@@ -160,14 +160,14 @@ http_interactions:
       Content-Type:
       - text/html; charset=UTF-8
       X-Trans-Id:
-      - tx24f158b6f22143dc96dbd-0053d13731dfw1
+      - txd1186fa4bf2c42caa43db-0053d1563ddfw1
       Date:
-      - Thu, 24 Jul 2014 16:41:21 GMT
+      - Thu, 24 Jul 2014 18:53:49 GMT
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Thu, 24 Jul 2014 16:41:26 GMT
+  recorded_at: Thu, 24 Jul 2014 18:53:55 GMT
 - request:
     method: head
     uri: https://storage101.dfw1.clouddrive.com/v1/MossoCloudFS_b1e2e28a-167a-4f71-afe4-096c4604b911/mikhailov
@@ -191,22 +191,22 @@ http_interactions:
       Content-Length:
       - '0'
       X-Container-Object-Count:
-      - '3'
+      - '2'
       Accept-Ranges:
       - bytes
       X-Timestamp:
       - '1393434777.63511'
       X-Container-Bytes-Used:
-      - '566'
+      - '560'
       Content-Type:
       - application/json; charset=utf-8
       X-Trans-Id:
-      - tx5eaa076e62284074aacbe-0053d13731dfw1
+      - txa6c19aef534e460faba6e-0053d1563ddfw1
       Date:
-      - Thu, 24 Jul 2014 16:41:21 GMT
+      - Thu, 24 Jul 2014 18:53:50 GMT
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Thu, 24 Jul 2014 16:41:27 GMT
+  recorded_at: Thu, 24 Jul 2014 18:53:56 GMT
 recorded_with: VCR 2.9.2

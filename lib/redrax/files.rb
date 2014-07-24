@@ -23,7 +23,7 @@ module Redrax
         expected: (200..299)
       )
       PaginatedFiles.new(
-        resp.map { |f| Redrax::File.from_hash(client, container_name, f) },
+        resp.map { |f| Redrax::File.from_hash(f) },
         self,
         container_name,
         options
@@ -64,10 +64,14 @@ module Redrax
     # @param file_name [String] Name of the file to get
     # TODO: Return metadata as well. Currently returns only the object contents. 
     def get(container_name, file_name)
-      client.request(
-        method:   :get,
-        path:     "#{container_name}/#{file_name}",
-        expected: 200
+      File.from_response(
+        file_name,
+        client.request(
+          method:       :get,
+          path:         "#{container_name}/#{file_name}",
+          expected:     200,
+          raw_response: true
+        )
       )
     end
 
