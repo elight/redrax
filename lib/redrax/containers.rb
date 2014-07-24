@@ -93,8 +93,9 @@ module Redrax
     end
 
     docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/POST_deletecontainermeta_v1__account___container__containerServicesOperations_d1e000.html"
+    # Removes named key value pairs from the metadata for a specific container
     # @param name [String] Name of the container to get metadata from
-    # @params keys [Array] The list of metadata fields to delete from this 
+    # @param keys [Array] The list of metadata fields to delete from this 
     #   container.
     def delete_metadata(name, *keys)
       client.request(

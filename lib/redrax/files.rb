@@ -12,6 +12,7 @@ module Redrax
     # Queries for all of the `File`s matching the query.
     # NOTE: the API documents some default limitations for this API call,
     # e.g., the maximum number of `File`s to return in a single call.
+    # @param container_name [String] Name of the container to inspect
     # @return [PaginatedFiles] An `Array` of `Files` that supports 
     # pagination via the API
     def list(container_name, options = {})
@@ -30,6 +31,7 @@ module Redrax
     end
 
     docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/PUT_createobject_v1__account___container___object__objectServicesOperations_d1e000.html"
+    # Creates an object in Cloud Files
     # @param body [String] The content to place in the Object in Cloud Files.
     # @param args [Hash] Accepts:
     #   * metadata: A Hash of key-value pairs to store as metadata on the Object
@@ -46,6 +48,8 @@ module Redrax
 
     docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/DELETE_deleteobject_v1__account___container___object__objectServicesOperations_d1e000.html"
     # Deletes an object from Cloud Files.
+    # @param container_name [String] Name of the container to delete the file from
+    # @param file_name [String] Name of the file to delete
     def delete(container_name, file_name)
       client.request(
         method:   :delete,
@@ -56,6 +60,8 @@ module Redrax
 
     docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/GET_getobjectdata_v1__account___container___object__objectServicesOperations_d1e000.html"
     # Gets an object from Cloud Files.
+    # @param container_name [String] Name of the container to get the file from
+    # @param file_name [String] Name of the file to get
     # TODO: Return metadata as well. Currently returns only the object contents. 
     def get(container_name, file_name)
       client.request(
