@@ -66,11 +66,10 @@ module Redrax
     def get(container_name, file_name)
       File.from_response(
         file_name,
-        client.request(
+        client.request_raw_response(
           method:       :get,
           path:         "#{container_name}/#{file_name}",
           expected:     200,
-          raw_response: true
         )
       )
     end
