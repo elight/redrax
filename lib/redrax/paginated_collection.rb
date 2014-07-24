@@ -46,6 +46,7 @@ module Redrax
       @field_name = field_name
     end
 
+    # Used internally; Do not touch or taunt.
     def self.field_name
       @field_name
     end
@@ -56,6 +57,7 @@ module Redrax
       @collection_name = collection_name
     end
 
+    # Used internally; Do not touch or taunt.
     def self.collection_name
       @collection_name
     end
