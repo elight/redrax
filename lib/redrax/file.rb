@@ -1,7 +1,5 @@
 module Redrax
   class File
-    extend Redrax::DocsLinkable
-
     attr_reader :name, :bytes, :content_type, :last_modified, :hash, :client, :container_name
 
     def self.from_hash(client, container_name, hash = {})
