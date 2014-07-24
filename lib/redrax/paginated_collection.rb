@@ -12,8 +12,11 @@ module Redrax
     # @param collection [Object] Redrax Object that responds to the 
     #   `collected_method` and `marker_field` methods specified by the
     #   subclass of PaginatedCollection.
+    # @param scoping [String] Name of the entity this collection is nested under
     # @param options [Hash] Optional arguments allowing:
     #   * :limit: The default size of each page
+    # NOTE: Currently supports a scoping depth of 1. May augment `scoping` to
+    #  also accept an Array in the future to allow for arbitrary nesting.
     def initialize(results, collection, scoping = nil, options = {:limit => 10_000})
       super(results)
       @collection = collection
