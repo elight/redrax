@@ -56,4 +56,27 @@ describe Redrax::Files, :vcr do
       end
     end
   end
+
+  describe "Metadata CRUD" do
+    it "can add get, and delete a metadata from a file in Cloud Files" do
+      files.create(
+        container_name, 
+        file_name,
+        "Ohai",
+        :headers => { "content-type" => "text/plain" }
+      )
+
+      metadata = { "foo" => "bar" }
+
+      files.replace_metadata(container_name, file_name, metadata)
+      fetched_metadata = files.get_metadata(container_name, file_name)
+
+      assert_equal metadata, fetched_metadata
+
+      files.replace_metadata(container_name, file_name, {})
+      fetched_metadata = files.get_metadata(container_name, file_name)
+
+      assert fetched_metadata.empty?, "Metadata should have been empty"
+    end
+  end
 end

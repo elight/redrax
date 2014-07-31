@@ -74,12 +74,49 @@ module Redrax
       )
     end
 
+    docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/GET_getobjectdata_v1__account___container___object__objectServicesOperations_d1e000.html"
+    # @param container_name [String] Name of the container with the desired file
+    # @param name [String] Name of the file to get metadata from
+    # @return [Hash] The metadata defined on a object. Keys will be 
+    #   stripped of their "X-Object-Meta-" prefix, e.g.
+    #   "X-Object-Meta-foo" will just be "foo" in the `Hash`.
+    def get_metadata(container_name, name)
+      MetadataExtractor.new.call(
+        "x-object-meta",
+        client.request(
+          method:   :head,
+          path:     "#{container_name}/#{name}",
+          expected: 200
+        )
+      )
+    end
+
+    docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/POST_updateaobjmeta_v1__account___container___object__objectServicesOperations_d1e000.html"
+    # This is both a delete and update operation. Metadata supplied as arguments
+    # to this method replace whatever metadata may already exist on a File.
+    # Be aware that this is significantly different from 
+    # {Container::update_metadata}.
+    # @param name [String] Name of the container to update metadata on
+    # @param args [Hash] Key-values to set as metadata on this object.
+    def replace_metadata(container_name, name, args = {})
+      client.request(
+        method:   :post,
+        path:     "#{container_name}/#{name}",
+        expected: 202,
+        headers:  MetadataMarshaller.new.call(
+          args,
+          "X-Object-Meta-",
+          wrong: "X-Remove-Object-Meta-"
+        )
+      )
+    end
+
     private
 
     def create_headers_from(args = {})
       args.fetch(:headers, {}).merge(
         MetadataMarshaller.new.call(
-          args[:metadata],
+          args.fetch(:metadata, {}),
           "X-Object-Meta-",
           wrong: "X-Remove-Object-Meta-"
         )
