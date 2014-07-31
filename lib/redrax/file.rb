@@ -17,7 +17,7 @@ module Redrax
     end
 
     def initialize(name, bytes = nil, content_type = nil, last_modified = nil, hash = nil, &block)
-      @metadata == {}
+      @metadata = {}
       @name, @bytes, @content_type, @last_modified, @hash = 
         name, bytes, content_type, last_modified, hash
       yield self if block_given?
