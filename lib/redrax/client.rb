@@ -1,5 +1,6 @@
 require 'faraday'
 require 'json'
+require 'uri'
 
 module Redrax
   class Client
@@ -60,7 +61,7 @@ module Redrax
       resp = transport(params[:params].delete(:region))
         .make_request(
           params[:method], 
-          params[:path], 
+          params[:path],
           params[:params], 
           request_headers_with(params[:headers])
         )

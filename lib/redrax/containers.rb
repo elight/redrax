@@ -4,6 +4,7 @@ require 'redrax/docs_linkable'
 module Redrax 
   class Containers
     extend DocsLinkable
+    include PathValidation
 
     attr_reader :client
 
@@ -38,6 +39,8 @@ module Redrax
     # @param args [Hash] Optional arguments
     #   * metadata: a Hash of key values to store as metadata on the new container
     def create(name, metadata = {})
+      validate_path_elements(name)
+
       client.request(
         method:   :put,
         path:     name,
@@ -54,6 +57,8 @@ module Redrax
     # Deletes a container from Cloud Files
     # @param name [String] Name of the container to delete
     def delete(name)
+      validate_path_elements(name)
+
       client.request(
         method:   :delete,
         path:     name,
@@ -67,6 +72,8 @@ module Redrax
     #   stripped of their "X-Container-Meta-" prefix, e.g.
     #   "X-Container-Meta-foo" will just be "foo" in the `Hash`.
     def get_metadata(name)
+      validate_path_elements(name)
+
       MetadataExtractor.new.call(
         "x-container-meta",
         client.request(
@@ -99,6 +106,8 @@ module Redrax
     # @param keys [Array] The list of metadata fields to delete from this 
     #   container.
     def delete_metadata(name, *keys)
+      validate_path_elements(name)
+
       client.request(
         method:   :post,
         path:     name,

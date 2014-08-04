@@ -1,6 +1,7 @@
 module Redrax
   class Files
-    extend Redrax::DocsLinkable
+    extend DocsLinkable
+    include PathValidation
 
     attr_reader :client
 
@@ -16,6 +17,8 @@ module Redrax
     # @return [PaginatedFiles] An `Array` of `Files` that supports 
     # pagination via the API
     def list(container_name, options = {})
+      validate_path_elements(container_name)
+
       resp = client.request(
         method:   :get,
         path:     container_name,
@@ -37,6 +40,8 @@ module Redrax
     #   * metadata: A Hash of key-value pairs to store as metadata on the Object
     #   * headers: Other non-metadata headers as supported by the API (see api_doc)
     def create(container_name, file_name, body = nil, args = {})
+      validate_path_elements(container_name, file_name)
+
       client.request(
         method:   :put,
         path:     "#{container_name}/#{file_name}",
@@ -51,6 +56,8 @@ module Redrax
     # @param container_name [String] Name of the container to delete the file from
     # @param file_name [String] Name of the file to delete
     def delete(container_name, file_name)
+      validate_path_elements(container_name, file_name)
+
       client.request(
         method:   :delete,
         path:     "#{container_name}/#{file_name}",
@@ -64,6 +71,8 @@ module Redrax
     # @param file_name [String] Name of the file to get
     # TODO: Return metadata as well. Currently returns only the object contents. 
     def get(container_name, file_name)
+      validate_path_elements(container_name, file_name)
+
       File.from_response(
         file_name,
         client.request_raw_response(
@@ -76,16 +85,18 @@ module Redrax
 
     docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/GET_getobjectdata_v1__account___container___object__objectServicesOperations_d1e000.html"
     # @param container_name [String] Name of the container with the desired file
-    # @param name [String] Name of the file to get metadata from
+    # @param file_name [String] Name of the file to get metadata from
     # @return [Hash] The metadata defined on a object. Keys will be 
     #   stripped of their "X-Object-Meta-" prefix, e.g.
     #   "X-Object-Meta-foo" will just be "foo" in the `Hash`.
-    def get_metadata(container_name, name)
+    def get_metadata(container_name, file_name)
+      validate_path_elements(container_name, file_name)
+
       MetadataExtractor.new.call(
         "x-object-meta",
         client.request(
           method:   :head,
-          path:     "#{container_name}/#{name}",
+          path:     "#{container_name}/#{file_name}",
           expected: 200
         )
       )
@@ -96,12 +107,14 @@ module Redrax
     # to this method replace whatever metadata may already exist on a File.
     # Be aware that this is significantly different from 
     # {Container::update_metadata}.
-    # @param name [String] Name of the container to update metadata on
+    # @param file_name [String] Name of the container to update metadata on
     # @param args [Hash] Key-values to set as metadata on this object.
-    def replace_metadata(container_name, name, args = {})
+    def replace_metadata(container_name, file_name, args = {})
+      validate_path_elements(container_name, file_name)
+
       client.request(
         method:   :post,
-        path:     "#{container_name}/#{name}",
+        path:     "#{container_name}/#{file_name}",
         expected: 202,
         headers:  MetadataMarshaller.new.call(
           args,
