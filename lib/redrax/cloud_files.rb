@@ -5,7 +5,7 @@ module Redrax
     extend DocsLinkable
     extend Forwardable
 
-    attr_reader :client, :containers
+    attr_reader :client, :containers, :files
 
     def_delegators :@client, :configure!, :authenticate!
 
@@ -13,6 +13,7 @@ module Redrax
       @client = client
       
       @containers = Containers.new(@client)
+      @files = Files.new(@client)
     end
   end
 end

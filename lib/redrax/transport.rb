@@ -22,7 +22,7 @@ class Transport < SimpleDelegator
       send(method) do |r|
         r.headers.merge!(headers)
         r.url path
-        r.body = params.to_json
+        r.body = params.delete(:body).to_json
       end
     else
       send(method, path, params, headers)

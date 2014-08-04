@@ -26,21 +26,97 @@ module Redrax
       )
       PaginatedContainers.new(
         resp.map { |c| Container.from_hash(client, c) }, 
-        self, 
+        self,
+        nil,
         options
       )
     end
 
-    # Factory for `Container`s. Does *not* make an API call.
-    # @return [Container] the newly created `Container`
-    def [](container_name)
-      Container.new(client, container_name)
+    docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/PUT_createcontainer_v1__account___container__containerServicesOperations_d1e000.html"
+    # Creates a container in Cloud Files.
+    # @param name [String] Name of the container to create
+    # @param args [Hash] Optional arguments
+    #   * metadata: a Hash of key values to store as metadata on the new container
+    def create(name, metadata = {})
+      client.request(
+        method:   :put,
+        path:     name,
+        expected: [201, 202],
+        headers:  MetadataMarshaller.new.call(
+          metadata,
+          "X-Container-Meta-",
+          wrong: "X-Remove-Container-Meta-"
+        )
+      )
     end
-  end
 
-  class PaginatedContainers < PaginatedCollection
-    marker_field :name
-    collection_method :list
+    docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/DELETE_deletecontainer_v1__account___container__containerServicesOperations_d1e000.html"
+    # Deletes a container from Cloud Files
+    # @param name [String] Name of the container to delete
+    def delete(name)
+      client.request(
+        method:   :delete,
+        path:     name,
+        expected: 204
+      )
+    end
+
+    docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/HEAD_retrievecontainermeta_v1__account___container__containerServicesOperations_d1e000.html"
+    # @param name [String] Name of the container to get metadata from
+    # @return [Hash] The metadata defined on a container. Keys will be 
+    #   stripped of their "X-Container-Meta-" prefix, e.g.
+    #   "X-Container-Meta-foo" will just be "foo" in the `Hash`.
+    def get_metadata(name)
+      MetadataExtractor.new.call(
+        "x-container-meta",
+        client.request(
+          method:   :head,
+          path:     name,
+          expected: 204
+        )
+      )
+    end
+
+    docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/POST_updateacontainermeta_v1__account___container__containerServicesOperations_d1e000.html"
+    # @param name [String] Name of the container to update metadata on
+    # @param args [Hash] Key-values to set as metadata on this container.
+    def update_metadata(name, args = {})
+      client.request(
+        method:   :post,
+        path:     name,
+        expected: 204,
+        headers:  MetadataMarshaller.new.call(
+          args,
+          "X-Container-Meta-",
+          wrong: "X-Remove-Container-Meta-"
+        )
+      )
+    end
+
+    docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/POST_deletecontainermeta_v1__account___container__containerServicesOperations_d1e000.html"
+    # Removes named key value pairs from the metadata for a specific container
+    # @param name [String] Name of the container to get metadata from
+    # @param keys [Array] The list of metadata fields to delete from this 
+    #   container.
+    def delete_metadata(name, *keys)
+      client.request(
+        method:   :post,
+        path:     name,
+        expected: 204,
+        headers:  MetadataMarshaller.new.call(
+          keys.each_with_object({}) { |k, h| h[k] = 1 },
+          "X-Remove-Container-Meta-",
+          wrong: "X-Container-Meta-"
+        )
+      )        
+    end
+
+    private
+
+    class PaginatedContainers < PaginatedCollection
+      marker_field :name
+      collection_method :list
+    end
   end
 end
 

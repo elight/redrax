@@ -32,50 +32,5 @@ describe Redrax::CloudFiles do
       end
     end
   end
-
-  describe "list containers", :vcr do
-    let(:cf)      { 
-      cf = Redrax::CloudFiles.new
-      cf.configure!(
-        user: ENV['RAX_USERNAME'],
-        api_key: ENV['RAX_API_KEY'],
-        region: :iad
-      )
-      cf.authenticate!
-      cf
-    }
-
-    it "get the user's list of containers, supplying a region for the req" do
-      assert cf.containers.list(:region => :dfw).length > 0
-    end
-
-    it "returns an Array containing Container objects" do
-      assert_instance_of Redrax::Container, cf.containers.list(:region => :dfw).first
-    end
-
-    it "gets the user's list of containers, using the configured region" do
-      r1 = cf.containers.list(:region => :dfw)
-      r2 = cf.containers.list
-      refute_equal r1.length, r2.length
-    end
-
-    describe "#next_page" do
-      it "paginates by returning a result set containing a call to #next_page" do
-        r1 = cf.containers.list(:region => :dfw, :limit => 1) 
-        assert_equal 1, r1.size
-        assert_respond_to r1, :next_page
-        r2 = r1.next_page
-        assert_equal 1, r2.size
-        refute_equal r1.last.name, r2.last.name
-      end
-
-      it "allows for the limit for the next page to be overridden" do
-        r1 = cf.containers.list(:region => :dfw, :limit => 1) 
-        r2 = r1.next_page(1_000)
-        assert r2.size > 1
-        assert r2.size < 1_000
-      end
-    end
-  end
 end
 
