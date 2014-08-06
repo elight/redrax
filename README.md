@@ -1,6 +1,6 @@
 # Redrax
 
-<a href="https://codeclimate.com/github/elight/redrax">
+<a href="https://codeclimate.com/github/elight/redrax/code">
   <img src="https://codeclimate.com/github/elight/redrax/badges/gpa.svg"></img>
 </a>
 
