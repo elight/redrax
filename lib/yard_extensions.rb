@@ -20,9 +20,9 @@ class APICallMethodHandler < YARD::Handlers::Ruby::Base
     if $url
       method = statement.method_name(true).to_s
       object = YARD::CodeObjects::MethodObject.new(namespace, method)
-      tag =  YARD::Tags::Tag.new(:see, "<a href='#{$url}'>API documentation</a>")
-      object.docstring.add_tag(tag)
-      p object.tags
+      object.docstring.add_tag(
+       YARD::Tags::Tag.new(:see, "<a href='#{$url}'>API documentation</a>")
+     )
       $url = nil
     end
   end
