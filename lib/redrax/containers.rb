@@ -13,11 +13,11 @@ module Redrax
     end
 
     docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/GET_listcontainers_v1__account__accountServicesOperations_d1e000.html"
-    # Queries for all of the `Container`s matching the query.
+    # Queries for all of the {Container}s matching the query.
     # NOTE: the API documents some default limitations for this API call,
-    # e.g., the maximum number of `Container`s to return in a single call.
-    # @return [PaginatedContainers] An `Array` of `Containers` that supports 
-    # pagination via the API
+    # e.g., the maximum number of {Container}s to return in a single call.
+    # @return [PaginatedContainers] An Array of {Container}s that supports
+    #   pagination via the API
     def list(options = {})
       resp = client.request(
         method:   :get,
@@ -68,9 +68,9 @@ module Redrax
 
     docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/HEAD_retrievecontainermeta_v1__account___container__containerServicesOperations_d1e000.html"
     # @param name [String] Name of the container to get metadata from
-    # @return [Hash] The metadata defined on a container. Keys will be 
+    # @return [Hash] The metadata defined on a container. Keys will be
     #   stripped of their "X-Container-Meta-" prefix, e.g.
-    #   "X-Container-Meta-foo" will just be "foo" in the `Hash`.
+    #   "X-Container-Meta-foo" will just be "foo" in the Hash.
     def get_metadata(name)
       validate_path_elements(name)
 
