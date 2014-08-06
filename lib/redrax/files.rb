@@ -10,11 +10,11 @@ module Redrax
     end
 
     docs "http://docs.rackspace.com/files/api/v1/cf-devguide/content/GET_listcontainerobjects_v1__account___container__containerServicesOperations_d1e000.html"
-    # Queries for all of the `File`s matching the query.
+    # Queries for all of the {File}s matching the query.
     # NOTE: the API documents some default limitations for this API call,
-    # e.g., the maximum number of `File`s to return in a single call.
+    # e.g., the maximum number of {File}s to return in a single call.
     # @param container_name [String] Name of the container to inspect
-    # @return [PaginatedFiles] An `Array` of `Files` that supports 
+    # @return [PaginatedFiles] An Array of {File}s that supports 
     # pagination via the API
     def list(container_name, options = {})
       validate_path_elements(container_name)
@@ -88,7 +88,7 @@ module Redrax
     # @param file_name [String] Name of the file to get metadata from
     # @return [Hash] The metadata defined on a object. Keys will be 
     #   stripped of their "X-Object-Meta-" prefix, e.g.
-    #   "X-Object-Meta-foo" will just be "foo" in the `Hash`.
+    #   "X-Object-Meta-foo" will just be "foo" in the Hash.
     def get_metadata(container_name, file_name)
       validate_path_elements(container_name, file_name)
 
