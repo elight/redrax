@@ -3,6 +3,7 @@ require 'redrax/client'
 require 'redrax/configuration'
 require 'redrax/errors'
 require 'redrax/docs_linkable'
+require 'redrax/path_validation'
 
 
 require 'redrax/discovery'
