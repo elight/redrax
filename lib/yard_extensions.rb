@@ -5,6 +5,10 @@ class DocsMethodHandler < YARD::Handlers::Ruby::Base
   def process
     $url = statement.parameters.first.jump(:tstring_content).source
 
+    # This little bit of evil is due to YARD executing handlers in
+    # the reverse order that they were registered. I want my 
+    # handlers to go LAST! Otherwise, YARD, is wiping out my
+    # changes!  And, yes, we only want to do this once.
     unless $reversed
       YARD::Handlers::Base.subclasses.reverse!
       $reversed = true
